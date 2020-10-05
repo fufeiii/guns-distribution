@@ -1,0 +1,47 @@
+@layout("/common/_form.html",{js:["/assets/mock/mock.js"]}){
+
+<script>
+    let isProd = ${isProd};
+</script>
+<form class="layui-form" id="profitTradeForm" lay-filter="profitTradeForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-header">基本数据</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">事件触发人标识<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="triggerMemberUsername" name="triggerMemberUsername" placeholder="请输入事件触发人(购买用户)" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">订单编号<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="eventNumber" name="eventNumber" placeholder="请输入订单编号" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">订单金额<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="eventPrice" name="eventPrice" placeholder="请输入订单金额" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                            <input id="memo" name="memo" placeholder="请输入备注" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button type="button" class="layui-btn" lay-filter="btnProfitTradeForm" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+
+</form>
+
+@}

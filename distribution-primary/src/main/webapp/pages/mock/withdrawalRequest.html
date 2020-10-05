@@ -1,0 +1,34 @@
+@layout("/common/_form.html",{js:["/assets/mock/mock.js"]}){
+<script>
+    let isProd = ${isProd};
+</script>
+<form class="layui-form" id="distWithdrawRecordForm" lay-filter="distWithdrawRecordForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-header">基本信息</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户标识<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="memberUsername" name="memberUsername" placeholder="请输入用户标识" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">提现金额<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="withdrawAmount" name="withdrawAmount" placeholder="请输入提现金额" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnWithdrawalRequestForm" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+
+</form>
+
+@}

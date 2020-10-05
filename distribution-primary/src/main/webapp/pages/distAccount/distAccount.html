@@ -1,0 +1,43 @@
+@layout("/common/_container.html",{js:["/assets/distAccount/distAccount.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">会员账户管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto">账&emsp;&emsp;号:</label>
+                                <div class="layui-input-inline">
+                                    <input id="memberUsername" class="layui-input" placeholder="输入账号"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="distAccountTable" lay-filter="distAccountTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-xs" data-dropdown="#userTbDrop{{d.LAY_INDEX}}" no-shade="true">
+        操作<i class="layui-icon layui-icon-drop" style="font-size: 12px;margin-right: 0;"></i></a>
+    <!-- 下拉菜单 -->
+    <ul class="dropdown-menu-nav dropdown-bottom-right layui-hide" id="userTbDrop{{d.LAY_INDEX}}">
+        <div class="dropdown-anchor"></div>
+        <li><a lay-event="edit">{{d.state==='ENABLE'?'禁用账户':'启用账户'}}</a></li>
+        <li><a lay-event="change">变动明细</a></li>
+    </ul>
+</script>
+@}

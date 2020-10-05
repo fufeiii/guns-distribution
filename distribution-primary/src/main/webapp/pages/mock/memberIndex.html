@@ -1,0 +1,164 @@
+@layout("/common/_form.html",{js:["/assets/mock/mock.js"]}){
+<script>
+    let isProd = ${isProd};
+</script>
+<form  class="layui-form" id="distMemberIndexForm" lay-filter="distMemberIndexForm">
+    <div class="layui-fluid" style="padding-bottom: 15px;">
+
+        <button id="memberIndexGet" type="button" class="layui-btn icon-btn">获取会员数据</button>
+        <hr>
+
+        <div class="layui-card">
+            <div class="layui-card-header">会员模块</div>
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">会员ID</label>
+                        <div class="layui-inline">
+                            <input readonly name="memberId" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">会员标识</label>
+                        <div class="layui-inline">
+                            <input readonly name="memberUsername" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">会员昵称</label>
+                        <div class="layui-inline">
+                            <input readonly name="memberNickname" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                            <label class="layui-form-label">会员等级</label>
+                        <div class="layui-inline">
+                            <input readonly name="memberRank" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">邀请人</label>
+                        <div class="layui-inline">
+                            <input readonly name="parent" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="layui-card">
+            <div class="layui-card-header">今日模块</div>
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">今日交易额</label>
+                        <div class="layui-inline">
+                            <input readonly name="tradeMoney" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">今日收益</label>
+                        <div class="layui-inline">
+                            <input readonly name="profitMoney" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">今日邀请</label>
+                        <div class="layui-inline">
+                            <input readonly name="inviteCount" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="layui-card">
+            <div class="layui-card-header">提现模块</div>
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">已提现佣金</label>
+                        <div class="layui-inline">
+                            <input readonly name="doneRemit" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">未结算佣金</label>
+                        <div class="layui-inline">
+                            <input readonly name="waitRemit" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="layui-card">
+            <div class="layui-card-header">汇总模块</div>
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">
+                            <span class="icon-text" lay-tips="即统计各种分润获得分润金钱的总数" lay-direction="1" lay-offset="5px,5px">
+                                <i class="layui-icon layui-icon-tips"></i>
+                            </span>
+                            分润佣金
+                        </label>
+                        <div class="layui-inline">
+                            <input readonly name="allProfitMoney" type="text" class="layui-input" />
+                        </div>
+                        <div class="layui-form-item">
+                            <button type="button" id="allProfitMoneyBtn" class="layui-btn icon-btn">分润佣金记录</button>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">
+                            <span class="icon-text" lay-tips="即直接或间接获得【商品交易】这种分润的所有订单金额" lay-direction="1" lay-offset="5px,5px">
+                            <i class="layui-icon layui-icon-tips"></i>
+                            </span>
+                            分销订单
+                        </label>
+                        <div class="layui-inline">
+                            <input readonly name="allTradeMoney" type="text" class="layui-input" />
+                        </div>
+                        <div class="layui-form-item">
+                            <button type="button" id="allTradeMoneyBtn" class="layui-btn icon-btn">分销订单记录</button>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">
+                            <span class="icon-text" lay-tips="可提现的总金额" lay-direction="1" lay-offset="5px,5px">
+                                <i class="layui-icon layui-icon-tips"></i>
+                            </span>
+                            提现明细
+                        </label>
+                        <div class="layui-inline">
+                            <input readonly name="allAvailableWithdraw" type="text" class="layui-input" />
+                        </div>
+                        <div class="layui-form-item">
+                            <button type="button" id="allAvailableWithdrawBtn" class="layui-btn icon-btn">提现明细记录</button>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md3">
+                        <label class="layui-form-label">
+                            <span class="icon-text" lay-tips="用户下级，即一二三级的人数" lay-direction="1" lay-offset="5px,5px">
+                                <i class="layui-icon layui-icon-tips"></i>
+                            </span>
+                            我的团队
+                        </label>
+                        <div class="layui-inline">
+                            <input readonly name="allTeamCount" type="text" class="layui-input" />
+                        </div>
+                        <div class="layui-form-item">
+                            <button type="button" id="allTeamCountBtn" class="layui-btn icon-btn">团队成员列表</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+@}

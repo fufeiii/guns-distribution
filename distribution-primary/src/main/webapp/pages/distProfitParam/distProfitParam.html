@@ -1,0 +1,114 @@
+@layout("/common/_container.html",{js:["/assets/distProfitParam/distProfitParam.js"]}){
+<div class="layui-body-header">
+    <span class="layui-body-header-title">分润参数</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >账户类型</label>
+                                <div class="layui-input-inline">
+                                    <select name="accountType">
+                                        <option value="">请选择</option>
+                                        @for(at in ate){
+                                        <option value="${at.name}">${at.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >分润类型</label>
+                                <div class="layui-input-inline">
+                                    <select name="profitType">
+                                        <option value="">请选择</option>
+                                        @for(pt in pte){
+                                        <option value="${pt.name}">${pt.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >计算模型</label>
+                                <div class="layui-input-inline">
+                                    <select name="calculateMode">
+                                        <option value="">请选择</option>
+                                        @for(cm in cme){
+                                        <option value="${cm.name}">${cm.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline form-search-show-expand">
+                                <label class="layui-form-label w-auto" >分润等级</label>
+                                <div class="layui-input-inline">
+                                    <select name="profitLevel">
+                                        <option value="">请选择</option>
+                                        @for(pl in ple){
+                                        <option value="${pl.name}">${pl.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline form-search-show-expand">
+                                <label class="layui-form-label w-auto" >用户类型</label>
+                                <div class="layui-input-inline">
+                                    <select name="memberType">
+                                        <option value="">请选择</option>
+                                        @for(mt in mte){
+                                        <option value="${mt.name}">${mt.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline form-search-show-expand">
+                                <label class="layui-form-label w-auto" >用户段位</label>
+                                <div class="layui-input-inline">
+                                    <select name="memberRank">
+                                        <option value="">请选择</option>
+                                        @for(mr in mre){
+                                        <option value="${mr.name}">${mr.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline form-search-show-expand">
+                                <label class="layui-form-label w-auto" >状&emsp;&emsp;态</label>
+                                <div class="layui-input-inline">
+                                    <select name="state">
+                                        <option value="">请选择</option>
+                                        @for(s in se){
+                                        <option value="${s.name}">${s.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <a class="layui-btn" search-expand> 展开 <i class="layui-icon layui-icon-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <button class="layui-btn icon-btn" lay-filter="tbSearch" lay-submit><i class="layui-icon">&#xe615;</i>搜索</button>
+                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="distProfitParamTable" lay-filter="distProfitParamTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
+
+@}

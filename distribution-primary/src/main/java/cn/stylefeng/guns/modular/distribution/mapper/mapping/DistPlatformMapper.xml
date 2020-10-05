@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.distribution.mapper.DistPlatformMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.distribution.entity.DistPlatform">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="version" property="version" />
+        <result column="platform_username" property="platformUsername" />
+        <result column="platform_nickname" property="platformNickname" />
+        <result column="state" property="state" />
+        <result column="memo" property="memo" />
+        <result column="sys_id" property="sysId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", create_time AS "createTime", update_time AS "updateTime", version AS "version", platform_username AS "platformUsername", platform_nickname AS "platformNickname", state AS "state", memo AS "memo", sys_id AS "sysId"
+    </sql>
+
+
+    <select id="customList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistPlatformVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistPlatformDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_platform where 1 = 1
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistPlatformDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_platform where 1 = 1
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistPlatformVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistPlatformDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_platform where 1 = 1
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistPlatformDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_platform where 1 = 1
+    </select>
+
+    <select id="exists" resultType="int">
+        select count(id) from dist_platform
+        where platform_username = #{username} limit 1
+    </select>
+
+</mapper>

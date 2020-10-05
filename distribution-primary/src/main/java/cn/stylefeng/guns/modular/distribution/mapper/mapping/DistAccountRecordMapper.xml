@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.distribution.mapper.DistAccountRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.distribution.entity.DistAccountRecord">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="platform_username" property="platformUsername" />
+        <result column="member_username" property="memberUsername" />
+        <result column="account_type" property="accountType" />
+        <result column="before_change_total" property="beforeChangeTotal" />
+        <result column="after_change_total" property="afterChangeTotal" />
+        <result column="change_amount" property="changeAmount" />
+        <result column="change_type" property="changeType" />
+        <result column="change_record_id" property="changeRecordId" />
+        <result column="memo" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", create_time AS "createTime", platform_username AS "platformUsername", member_username AS "memberUsername", account_type AS "accountType", before_change_total AS "beforeChangeTotal", after_change_total AS "afterChangeTotal", change_amount AS "changeAmount", change_type AS "changeType", change_record_id AS "changeRecordId", memo AS "memo"
+    </sql>
+
+
+    <select id="customList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistAccountRecordVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistAccountRecordDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_account_record where 1 = 1
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistAccountRecordDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_account_record where 1 = 1
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistAccountRecordVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistAccountRecordDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_account_record ar
+        where 1 = 1
+        <if test="paramCondition.memberUsername != null and paramCondition.memberUsername != ''">
+            and ar.member_username = #{paramCondition.memberUsername}
+        </if>
+        <if test="paramCondition.accountType != null">
+            and ar.account_type = #{paramCondition.accountType}
+        </if>
+        <if test="paramCondition.changeType != null">
+            and ar.change_type = #{paramCondition.changeType}
+        </if>
+        order by ar.create_time desc
+    </select>
+
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.distribution.mapper.DistProfitRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.distribution.entity.DistProfitRecord">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="event_id" property="eventId" />
+        <result column="account_type" property="accountType" />
+        <result column="impact_member_username" property="impactMemberUsername" />
+        <result column="income_amount" property="incomeAmount" />
+        <result column="memo" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_DTO_Column_List">
+        pr.id AS "id", pr.create_time AS "createTime", pr.event_id AS "eventId", pr.account_type AS "accountType", pr.impact_member_username AS "impactMemberUsername", pr.income_amount AS "incomeAmount", pr.memo AS "memo"
+        , pe.profit_type AS "profitType", pe.trigger_member_username AS "triggerMemberUsername", pe.event_price AS "eventPrice", pe.event_number AS "eventNumber"
+    </sql>
+    <sql id="Base_Column_List">
+        id AS "id", create_time AS "createTime", event_id AS "eventId", account_type AS "accountType", impact_member_username AS "impactMemberUsername", income_amount AS "incomeAmount", memo AS "memo"
+    </sql>
+
+
+    <select id="customList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistProfitRecordVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistProfitRecordDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_profit_record where 1 = 1
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistProfitRecordDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_profit_record where 1 = 1
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistProfitRecordVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistProfitRecordDTO">
+        select
+        <include refid="Base_DTO_Column_List"/>
+        from dist_profit_record pr
+        inner join dist_profit_event pe on pe.id = pr.event_id
+        where 1 = 1
+        <if test="paramCondition.profitType != null">
+            and pe.profit_type = #{paramCondition.profitType}
+        </if>
+        <if test="paramCondition.accountType != null">
+            and pr.account_type = #{paramCondition.accountType}
+        </if>
+        <if test="paramCondition.triggerMemberUsername != null and paramCondition.triggerMemberUsername != ''">
+            and pe.trigger_member_username = #{paramCondition.triggerMemberUsername}
+        </if>
+        <if test="paramCondition.impactMemberUsername != null and paramCondition.impactMemberUsername != ''">
+            and pr.impact_member_username = #{paramCondition.impactMemberUsername}
+        </if>
+        <if test="paramCondition.eventNumber != null and paramCondition.eventNumber != ''">
+            and pe.event_number = #{paramCondition.eventNumber}
+        </if>
+        order by pe.create_time desc
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistProfitRecordDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_profit_record where 1 = 1
+    </select>
+
+</mapper>

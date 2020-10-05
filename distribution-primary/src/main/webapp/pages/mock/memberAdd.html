@@ -1,0 +1,73 @@
+@layout("/common/_form.html",{js:["/assets/mock/mock.js"]}){
+<script>
+    let isProd = ${isProd};
+</script>
+<form class="layui-form" id="distMemberForm" lay-filter="distMemberForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-header">基本信息</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户标识<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="memberUsername" name="memberUsername" placeholder="请输入用户标识" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户昵称<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="memberNickname" name="memberNickname" placeholder="请输入用户昵称" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户头像</label>
+                        <div class="layui-input-block">
+                            <input id="memberAvatar" name="memberAvatar" placeholder="请输入头像地址" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">父级标识</label>
+                        <div class="layui-input-block">
+                            <input id="firParent" name="firParent" placeholder="请输入父级标识" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户身份</label>
+                        <div class="layui-input-block">
+                            <select id="memberType" name="memberType" >
+                                <option value="">请选择</option>
+                                @for(m in mt){
+                                <option value="${m.name}">${m.message}</option>
+                                @}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户状态</label>
+                        <div class="layui-input-block">
+                            <select id="state" name="state">
+                                <option value="">请选择</option>
+                                @for(s in cs){
+                                <option value="${s.name}">${s.message}</option>
+                                @}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                            <input id="memo" name="memo" placeholder="请输入备注" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnDistMemberForm" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+</form>
+
+@}

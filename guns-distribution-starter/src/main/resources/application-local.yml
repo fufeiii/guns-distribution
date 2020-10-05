@@ -1,0 +1,41 @@
+# Mysql数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.116.1.66:3306/guns_distribution?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: root
+    password: xxx
+    filters: wall,mergeStat
+
+    # 连接池大小根据实际情况调整
+    max-active: 20
+    max-pool-prepared-statement-per-connection-size: 20
+
+  # redis 配置
+  redis:
+    host: 47.116.1.66
+    port: 6379
+    password: xxx
+    database: 1
+
+  # 邮件发送配置（改为自己的账号和密码）
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: sn93@qq.com
+    password: xxxpassword
+
+
+
+# 邮件发送（改为自己的账号）
+mail:
+  from: sn93@qq.com
+
+# 主要是打印sql
+logging:
+  level:
+    root: info
+    cn.stylefeng.guns.modular.distribution.mapper: debug
+
+server:
+  port: 8080

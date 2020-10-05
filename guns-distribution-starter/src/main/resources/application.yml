@@ -1,0 +1,53 @@
+server:
+  port: 80
+  max-http-header-size: 10240
+
+beetl:
+  resource-auto-check: true         #热加载beetl模板，开发时候用
+
+log:
+  path: ./app_logs
+
+spring:
+  profiles:
+    active: local
+  mvc:
+    view:
+      prefix: /pages
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+  jta:
+    atomikos:
+      properties:
+        max-actives: -1
+    log-dir: ./${log.path}/transaction-logs # jta的日志配置
+
+mybatis-plus:
+  mapper-locations: classpath*:cn/stylefeng/**/mapping/*.xml
+  typeEnumsPackage: cn.stylefeng.guns.modular.distribution.enums.biz
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+    db-config:
+      id-type: assign_id
+      table-underline: true
+
+# 分销模块参数配置
+dist:
+  # 新建租户创建的账号的相关默认值,除密码外,其余是相关id
+  default-tenant:
+    password: 111111
+    position: 25
+    dept: 3
+    role: 6
+  # api肯定不会对外暴露，内网通信，token过期时间设大一些
+  api:
+    enable: true
+    token-expired-month: 120

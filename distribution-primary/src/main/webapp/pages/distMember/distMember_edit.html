@@ -1,0 +1,65 @@
+@layout("/common/_form.html",{js:["/assets/distMember/distMember_edit.js"]}){
+
+<form class="layui-form" id="distMemberForm" lay-filter="distMemberForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-header">基本信息</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <input name="id" type="hidden"/>
+                    <!--<div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">平台标识<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="platformUsername" readonly name="platformUsername" placeholder="请输入平台标识" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>-->
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户标识<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="memberUsername" readonly name="memberUsername" placeholder="请输入用户标识" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户昵称<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="memberNickname" name="memberNickname" placeholder="请输入用户昵称" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户身份<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <select id="memberType" name="memberType" lay-verify="required">
+                                @for(m in mt){
+                                <option value="${m.name}">${m.message}</option>
+                                @}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">用户状态<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <select id="state" name="state" lay-verify="required">
+                                @for(s in cs){
+                                <option value="${s.name}">${s.message}</option>
+                                @}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                            <input id="memo" name="memo" placeholder="请输入备注" type="text" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+
+</form>
+
+@}

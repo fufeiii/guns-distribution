@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.distribution.mapper.DistMemberMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.distribution.entity.DistMember">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="version" property="version" />
+        <result column="platform_username" property="platformUsername" />
+        <result column="member_username" property="memberUsername" />
+        <result column="member_nickname" property="memberNickname" />
+        <result column="member_avatar" property="memberAvatar" />
+        <result column="fir_parent" property="firParent" />
+        <result column="sec_parent" property="secParent" />
+        <result column="thr_parent" property="thrParent" />
+        <result column="parent_path" property="parentPath" />
+        <result column="member_type" property="memberType" />
+        <result column="member_rank" property="memberRank" />
+        <result column="state" property="state" />
+        <result column="memo" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", create_time AS "createTime", update_time AS "updateTime", version AS "version", platform_username AS "platformUsername", member_username AS "memberUsername", member_nickname AS "memberNickname", member_avatar AS "memberAvatar"
+        , fir_parent AS "firParent", sec_parent AS "secParent", thr_parent AS "thrParent", parent_path AS "parentPath", member_type AS "memberType", member_rank AS "memberRank", state AS "state", memo AS "memo"
+    </sql>
+
+
+    <select id="customList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistMemberVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistMemberDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_member where 1 = 1
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistMemberDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_member where 1 = 1
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistMemberVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistMemberDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_member m
+        where 1 = 1
+        <if test="paramCondition.memberUsername != null and paramCondition.memberUsername != ''">
+            and m.member_username like concat('%',#{paramCondition.memberUsername},'%')
+        </if>
+        <if test="paramCondition.firParent != null and paramCondition.firParent != ''">
+            and (m.fir_parent = #{paramCondition.firParent} or m.sec_parent = #{paramCondition.firParent} or m.thr_parent = #{paramCondition.firParent})
+        </if>
+        order by m.create_time desc
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistMemberDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_member where 1 = 1
+    </select>
+
+    <select id="exists" resultType="int">
+        select count(id) from dist_member
+        where member_username = #{username} limit 1
+    </select>
+
+    <select id="selectByAttribute" resultType="cn.stylefeng.guns.modular.distribution.entity.DistMember">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_member
+        where ${column} = #{value}
+    </select>
+
+
+    <select id="team" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistMemberVO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_member m
+        where 1 = 1
+        <choose>
+            <!-- 0是特殊的，代表查询没有父级的会员，此时不需要parent的值 -->
+            <when test="level == 0">
+                and fir_parent is null
+            </when>
+            <when test="level == 1">
+                and fir_parent = #{parent}
+            </when>
+            <when test="level == 2">
+                and sec_parent = #{parent}
+            </when>
+            <when test="level == 3">
+                and thr_parent = #{parent}
+            </when>
+        </choose>
+    </select>
+
+    <select id="memberTop" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistMemberVO">
+        SELECT COUNT(1) inviteNum, fir_parent firParent
+        FROM dist_member
+        WHERE parent_path IS NOT NULL
+        GROUP BY fir_parent
+        ORDER BY inviteNum DESC
+        LIMIT #{top}
+    </select>
+
+    <select id="selectMemberList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistMemberVO" >
+        SELECT
+            id AS id, create_time as createTime, member_username as memberUsername,
+            member_nickname as memberNickname, member_type as memberType, member_rank as memberRank
+        FROM
+            dist_member
+        WHERE
+        member_username IN
+        <foreach collection="memberUsernameList" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

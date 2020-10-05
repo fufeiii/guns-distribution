@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.stylefeng</groupId>
+        <artifactId>guns-distribution</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>guns-distribution-starter</artifactId>
+
+    <packaging>jar</packaging>
+
+    <dependencies>
+
+        <!-- 分销模块 -->
+        <dependency>
+            <groupId>cn.stylefeng</groupId>
+            <artifactId>distribution-primary</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- guns基础框架 -->
+        <dependency>
+            <groupId>cn.stylefeng</groupId>
+            <artifactId>guns-sys</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- 数据源容器 -->
+        <dependency>
+            <groupId>cn.stylefeng</groupId>
+            <artifactId>guns-dbctn</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <fork>true</fork><!-- 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.26.1</version>
+                <configuration>
+                    <dockerHost>unix:///var/run/docker.sock</dockerHost>
+                    <images>
+                        <image>
+                            <name>snexus.stylefeng.cn:6001/guns-api:${docker.img.version}</name>
+                            <build>
+                                <from>java:8</from>
+                                <assembly>
+                                    <descriptor>docker-assembly.xml</descriptor>
+                                </assembly>
+                                <cmd>
+                                    <shell>java -jar -Xms512m -Xmx512m -Xss1024K -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m /maven/${project.artifactId}.jar</shell>
+                                </cmd>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

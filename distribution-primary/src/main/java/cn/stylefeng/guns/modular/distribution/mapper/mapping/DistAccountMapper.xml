@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.distribution.mapper.DistAccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.distribution.entity.DistAccount">
+        <id column="member_id" property="memberId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="version" property="version"/>
+        <result column="money_total" property="moneyTotal"/>
+        <result column="money_available" property="moneyAvailable"/>
+        <result column="money_frozen" property="moneyFrozen"/>
+        <result column="integral_total_history" property="integralTotalHistory"/>
+        <result column="integral_total" property="integralTotal"/>
+        <result column="integral_available" property="integralAvailable"/>
+        <result column="integral_frozen" property="integralFrozen"/>
+        <result column="state" property="state"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        member_id AS "memberId", create_time AS "createTime", update_time AS "updateTime", version AS "version", money_total AS "moneyTotal", money_available AS "moneyAvailable", money_frozen AS "moneyFrozen", integral_total_history AS "integralTotalHistory", integral_total AS "integralTotal", integral_available AS "integralAvailable", integral_frozen AS "integralFrozen", state AS "state"
+    </sql>
+    <sql id="Base_VO_Column_List">
+        a.member_id AS "memberId", a.create_time AS "createTime", a.update_time AS "updateTime", a.version AS "version", a.money_total AS "moneyTotal", a.money_available AS "moneyAvailable", a.money_frozen AS "moneyFrozen", a.integral_total_history AS "integralTotalHistory", a.integral_total AS "integralTotal", a.integral_available AS "integralAvailable", a.integral_frozen AS "integralFrozen", a.state AS "state"
+        , m.member_username AS "memberUsername", m.member_nickname AS "memberNickname"
+    </sql>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistAccountVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistAccountDTO">
+        select
+        <include refid="Base_VO_Column_List"/>
+        from dist_account a
+        left join dist_member m on a.member_id = m.id
+        where 1 = 1
+        <if test="paramCondition.memberUsername != null and paramCondition.memberUsername != ''">
+            and m.member_username like concat('%',#{paramCondition.memberUsername},'%')
+        </if>
+        order by a.create_time desc
+    </select>
+
+</mapper>

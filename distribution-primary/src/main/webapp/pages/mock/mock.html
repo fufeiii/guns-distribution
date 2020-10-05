@@ -1,0 +1,68 @@
+@layout("/common/_container.html", {js:["/assets/mock/mock.js"]}){
+<div class="layui-body-header">
+    <span class="layui-body-header-title">模拟操作</span>
+</div>
+<script>
+    let isProd = ${isProd};
+</script>
+<div class="layui-fluid" style="height: 700px">
+    <blockquote class="layui-elem-quote">
+        【注意】：正式环境请先获取token，调用api的接口的token与管理端的token略有不同，详情查看源码。
+    </blockquote>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                     <span class="icon-text" lay-tips="清除当前租户的所有数据，只保留分销参数。" lay-direction="2" lay-offset="5px,5px">
+                        <i class="layui-icon layui-icon-tips"></i>
+                     </span>
+                    清除数据
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item layui-row">
+                        <div class="layui-inline">
+                            <button id="tenantClear" class="layui-btn icon-btn">清除数据</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">会员相关</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item layui-row">
+                        <div class="layui-inline">
+                            <button id="memberAdd" class="layui-btn icon-btn">新增会员</button>
+                        </div>
+                        <div class="layui-inline">
+                            <button id="memberIndex" class="layui-btn icon-btn">会员首页</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">分润相关</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item layui-row">
+                        <div class="layui-inline">
+                            <button id="profitTrade" class="layui-btn icon-btn">交易分润</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">提现相关</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item layui-row">
+                        <div class="layui-inline">
+                            <button id="withdrawalRequest" class="layui-btn icon-btn">申请提现</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@}

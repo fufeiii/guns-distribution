@@ -1,0 +1,63 @@
+@layout("/common/_container.html",{js:["/assets/distAccountRecord/distAccountRecord.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">账户明细记录管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            @/**
+                            @ * 只有是账户变动记录过来的时候,才显示搜索框
+                            @ **/
+                            @if(isEmpty(memberUsername)){
+                                <div class="layui-inline">
+                                    <label class="layui-form-label w-auto" >用户标识</label>
+                                    <div class="layui-input-inline">
+                                        <input class="layui-input" id="memberUsername" placeholder="请输入用户标识">
+                                    </div>
+                                </div>
+                            @} else {
+                                <input type="hidden" id="memberUsername" value="${memberUsername}">
+                            @}
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >账户类型</label>
+                                <div class="layui-input-inline">
+                                    <select id="accountType">
+                                        <option value="">请选择</option>
+                                        @for(at in ate){
+                                        <option value="${at.name}">${at.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >变动类型</label>
+                                <div class="layui-input-inline">
+                                    <select id="changeType">
+                                        <option value="">请选择</option>
+                                        @for(ct in cte){
+                                        <option value="${ct.name}">${ct.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                @if(isEmpty(memberUsername)){
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                                @}
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="distAccountRecordTable" lay-filter="distAccountRecordTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@}

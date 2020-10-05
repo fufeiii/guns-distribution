@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.distribution.mapper.DistProfitEventMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.distribution.entity.DistProfitEvent">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="platform_username" property="platformUsername" />
+        <result column="profit_type" property="profitType" />
+        <result column="trigger_member_username" property="triggerMemberUsername" />
+        <result column="event_number" property="eventNumber" />
+        <result column="event_price" property="eventPrice" />
+        <result column="memo" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", create_time AS "createTime", platform_username AS "platformUsername", profit_type AS "profitType", trigger_member_username AS "triggerMemberUsername", event_number AS "eventNumber", event_price AS "eventPrice", memo AS "memo"
+    </sql>
+
+    <sql id="findProfitRecordPage">
+        pr.id AS "id", pe.create_time AS "createTime", pe.id AS "eventId", pe.profit_type AS "profitType", pe.trigger_member_username AS "triggerMemberUsername", pe.event_number AS "eventNumber", pe.event_price AS "eventPrice", pr.memo AS "memo",
+        pr.account_type as "accountType", pr.impact_member_username as "impactMemberUsername", pr.income_amount as "incomeAmount"
+    </sql>
+
+    <select id="customList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistProfitEventVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistProfitEventDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_profit_event pe
+        where 1 = 1
+        order by pe.create_time desc
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistProfitEventDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_profit_event where 1 = 1
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistProfitEventVO" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistProfitEventDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_profit_event pe
+        where 1 = 1
+        <if test="paramCondition.eventNumber != null and paramCondition.eventNumber != ''">
+            and pe.event_number = #{paramCondition.eventNumber}
+        </if>
+        <if test="paramCondition.triggerMemberUsername != null and paramCondition.triggerMemberUsername != ''">
+            and pe.trigger_member_username = #{paramCondition.triggerMemberUsername}
+        </if>
+        <if test="paramCondition.profitType != null">
+            and pe.profit_type = #{paramCondition.profitType}
+        </if>
+        order by pe.create_time desc
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="cn.stylefeng.guns.modular.distribution.model.dto.DistProfitEventDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from dist_profit_event where 1 = 1
+    </select>
+
+    <select id="records" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistProfitRecordVO">
+        select
+        pr.impact_member_username as impactMemberUsername, pr.create_time as createTime, pr.account_type as accountType
+        , pr.income_amount as incomeAmount
+        from dist_profit_event pe
+        inner join dist_profit_record pr on pe.id = pr.event_id
+        where pe.id = #{eventId}
+    </select>
+
+    <select id="tradeMoney" resultType="decimal">
+        select sum(pe.event_price)
+        from dist_profit_event pe
+        <if test="impactMemberUsername != null and impactMemberUsername != ''">
+            inner join dist_profit_record pr on pr.event_id = pe.id
+        </if>
+        <!-- 0是商品交易分润类型, 0是佣金账户类型 -->
+        where pe.profit_type = 0
+        <if test="impactMemberUsername != null and impactMemberUsername != ''">
+            and pr.impact_member_username = #{impactMemberUsername}
+        </if>
+        <if test="begin != null and end != null">
+            and pe.create_time between #{begin} and #{end}
+        </if>
+    </select>
+
+    <select id="profitMoney" resultType="decimal">
+        select sum(pr.income_amount)
+        <!-- 连接dist_profit_event是为了能够使用多租户 -->
+        from dist_profit_event pe
+        inner join dist_profit_record pr on pe.id = pr.event_id
+        where 1 =1 and pr.account_type = 0
+        <if test="impactMemberUsername != null and impactMemberUsername != ''">
+            and pr.impact_member_username = #{impactMemberUsername}
+        </if>
+        <if test="begin != null and end != null">
+            and pe.create_time between #{begin} and #{end}
+        </if>
+    </select>
+
+    <select id="findProfitRecordPage" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistProfitRecordVO">
+        select
+        <include refid="findProfitRecordPage"/>
+        from dist_profit_event pe
+        inner join dist_profit_record pr on pe.id = pr.event_id
+        where 1 = 1
+        <if test="memberUsername != null and memberUsername != ''">
+            and pr.impact_member_username = #{memberUsername}
+        </if>
+        <if test="profitType != null">
+            and pe.profit_type = #{profitType.code}
+        </if>
+        <if test="accountType != null">
+            and pr.account_type = #{accountType.code}
+        </if>
+        order by pe.create_time desc
+    </select>
+
+</mapper>

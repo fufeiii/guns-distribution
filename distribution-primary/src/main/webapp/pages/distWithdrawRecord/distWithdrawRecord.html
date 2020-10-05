@@ -1,0 +1,53 @@
+@layout("/common/_container.html",{js:["/assets/distWithdrawRecord/distWithdrawRecord.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">提现申请记录管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >用户标识</label>
+                                <div class="layui-input-inline">
+                                    <input id="condition" class="layui-input" type="text" placeholder="用户标识"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >处理状态</label>
+                                <div class="layui-input-inline">
+                                    <select id="disposeState">
+                                        <option value="">请选择</option>
+                                        @for(ds in dse){
+                                        <option value="${ds.name}">${ds.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="distWithdrawRecordTable" lay-filter="distWithdrawRecordTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    {{#  if (d.disposeState === 'WAIT_AUDIT') { }}
+        <a class="layui-btn layui-bg-green layui-btn-xs" lay-event="WAIT_REMIT">通过</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="REJECT">拒绝</a>
+    {{#  } else { }}
+        <a class="layui-btn layui-bg-green layui-btn layui-btn-disabled layui-btn-xs" lay-event="">通过</a>
+        <a class="layui-btn layui-btn-danger layui-btn layui-btn-disabled layui-btn-xs" lay-event="">拒绝</a>
+    {{#  } }}
+</script>
+@}

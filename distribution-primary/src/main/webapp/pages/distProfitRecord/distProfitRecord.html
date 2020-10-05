@@ -1,0 +1,69 @@
+@layout("/common/_container.html",{js:["/assets/distProfitRecord/distProfitRecord.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">分润记录管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >分润类型</label>
+                                <div class="layui-input-inline">
+                                    <select name="profitType">
+                                        <option value="">请选择</option>
+                                        @for(pt in pte){
+                                        <option value="${pt.name}">${pt.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto" >获利类型</label>
+                                <div class="layui-input-inline">
+                                    <select name="accountType">
+                                        <option value="">请选择</option>
+                                        @for(at in ate){
+                                        <option value="${at.name}">${at.message}</option>
+                                        @}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto">事件编号</label>
+                                <div class="layui-input-inline">
+                                    <input name="eventNumber" type="text" class="layui-input"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label  w-auto">触发人</label>
+                                <div class="layui-input-inline">
+                                    <input name="triggerMemberUsername" type="text" class="layui-input"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label  w-auto">收益人</label>
+                                <div class="layui-input-inline">
+                                    <input name="impactMemberUsername" type="text" class="layui-input"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <button class="layui-btn icon-btn" lay-filter="tbSearch" lay-submit><i class="layui-icon">&#xe615;</i>搜索</button>
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="distProfitRecordTable" lay-filter="distProfitRecordTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@}

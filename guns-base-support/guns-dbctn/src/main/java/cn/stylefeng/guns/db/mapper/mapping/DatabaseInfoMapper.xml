@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.db.mapper.DatabaseInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.base.db.entity.DatabaseInfo">
+        <id column="db_id" property="dbId" />
+        <result column="db_name" property="dbName" />
+        <result column="jdbc_driver" property="jdbcDriver" />
+        <result column="user_name" property="userName" />
+        <result column="password" property="password" />
+        <result column="jdbc_url" property="jdbcUrl" />
+        <result column="remarks" property="remarks" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        db_id AS "dbId", db_name AS "dbName", jdbc_driver AS "jdbcDriver", user_name AS "userName", '***' AS "password", jdbc_url AS "jdbcUrl", remarks AS "remarks", create_time AS "createTime"
+    </sql>
+
+    <select id="customList" resultType="cn.stylefeng.guns.base.db.model.result.DatabaseInfoResult" parameterType="cn.stylefeng.guns.base.db.model.params.DatabaseInfoParam">
+        select
+        <include refid="Base_Column_List"/>
+        from database_info where 1 = 1
+            <if test="paramCondition.dbName != null and paramCondition.dbName != ''">
+                and db_name like CONCAT('%',#{paramCondition.dbName},'%')
+            </if>
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.base.db.model.params.DatabaseInfoParam">
+        select
+        <include refid="Base_Column_List"/>
+        from database_info where 1 = 1
+            <if test="paramCondition.dbName != null and paramCondition.dbName != ''">
+                and db_name like CONCAT('%',#{paramCondition.dbName},'%')
+            </if>
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.base.db.model.result.DatabaseInfoResult" parameterType="cn.stylefeng.guns.base.db.model.params.DatabaseInfoParam">
+        select
+        <include refid="Base_Column_List"/>
+        from database_info where 1 = 1
+            <if test="paramCondition.dbName != null and paramCondition.dbName != ''">
+                and db_name like CONCAT('%',#{paramCondition.dbName},'%')
+            </if>
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.base.db.model.result.DatabaseInfoResult" parameterType="cn.stylefeng.guns.base.db.model.params.DatabaseInfoParam" databaseId="pgsql">
+        select
+        <include refid="Base_Column_List"/>
+        from database_info where 1 = 1
+        <if test="paramCondition.dbName != null and paramCondition.dbName != ''">
+            and db_name like '%' || #{paramCondition.dbName} || '%'
+        </if>
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.base.db.model.result.DatabaseInfoResult" parameterType="cn.stylefeng.guns.base.db.model.params.DatabaseInfoParam" databaseId="oracle">
+        select
+        <include refid="Base_Column_List"/>
+        from database_info where 1 = 1
+        <if test="paramCondition.dbName != null and paramCondition.dbName != ''">
+            and db_name like '%' || #{paramCondition.dbName} || '%'
+        </if>
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="cn.stylefeng.guns.base.db.model.params.DatabaseInfoParam">
+        select
+        <include refid="Base_Column_List"/>
+        from database_info where 1 = 1
+            <if test="paramCondition.dbName != null and paramCondition.dbName != ''">
+                and db_name like CONCAT('%',#{paramCondition.dbName},'%')
+            </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,227 @@
+@layout("/common/_container.html",{js:["/assets/distMember/distMember.js"]}){
+<style>
+    #distMemberTable + .layui-table-view .layui-table-body tbody > tr > td {
+        padding: 0;
+    }
+
+    #distMemberTable + .layui-table-view .layui-table-body tbody > tr > td > .layui-table-cell {
+        height: 48px;
+        line-height: 48px;
+    }
+
+    .tb-img-circle {
+        width: 40px;
+        height: 40px;
+        cursor: zoom-in;
+        border-radius: 50%;
+        border: 2px solid #dddddd;
+    }
+</style>
+<div class="layui-body-header">
+    <span class="layui-body-header-title">会员管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto">账&emsp;&emsp;号:</label>
+                                <div class="layui-input-inline">
+                                    <input name="memberUsername" class="layui-input" placeholder="输入账号"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label w-auto">上级账号:</label>
+                                <div class="layui-input-inline">
+                                    <input name="firParent" class="layui-input" placeholder="输入上级账号"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn icon-btn" lay-filter="tbSearch" lay-submit><i class="layui-icon">&#xe615;</i>搜索</button>
+                                <!-- 在template渲染时就把按钮注释了 -->
+                                @//<button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>@
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="distMemberTable" lay-filter="distMemberTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="account">账户</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="tree">下级</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+</script>
+
+<!-- 账户模板 -->
+<script type="text/html" id="account">
+    <form lay-filter="account" class="layui-form" style="background: #F2F2F2">
+        <input name="memberId" type="hidden"/>
+        <div class="layui-fluid" >
+            <!-- 佣金 -->
+            <div class="layui-card">
+                <div class="layui-card-header"><b>佣金：</b></div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item layui-row">
+                        <div class="layui-inline layui-col-md5">
+                            <label class="layui-form-label">总佣金</label>
+                            <div class="layui-input-block">
+                                <input name="moneyTotal" readonly type="text" class="layui-input"/>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-col-md5">
+                            <label class="layui-form-label">可用佣金</label>
+                            <div class="layui-input-block">
+                                <input name="moneyAvailable" readonly type="text" class="layui-input"/>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-col-md5">
+                            <label class="layui-form-label">冻结佣金</label>
+                            <div class="layui-input-block">
+                                <input name="moneyFrozen" readonly type="text" class="layui-input"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 积分 -->
+            <div class="layui-card">
+                <div class="layui-card-header"><b>积分：</b></div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item layui-row">
+                        <div class="layui-inline layui-col-md5">
+                            <label class="layui-form-label">总积分</label>
+                            <div class="layui-input-block">
+                                <input name="integralTotal" readonly type="text" class="layui-input"/>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-col-md5">
+                            <label class="layui-form-label">可用积分</label>
+                            <div class="layui-input-block">
+                                <input name="integralAvailable" readonly type="text" class="layui-input"/>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-col-md5">
+                            <label class="layui-form-label">冻结积分</label>
+                            <div class="layui-input-block">
+                                <input name="integralFrozen" readonly type="text" class="layui-input"/>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-col-md5">
+                            <label class="layui-form-label">历史总积分</label>
+                            <div class="layui-input-block">
+                                <input name="integralTotalHistory" readonly type="text" class="layui-input"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 账户状态 -->
+            <div class="layui-card">
+                <div class="layui-card-header"><b>账户状态：</b></div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item layui-row">
+                        <div class="layui-inline layui-col-md5">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input name="stateMessage" readonly type="text" class="layui-input"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+
+<!-- 下级选项卡模板 -->
+<script type="text/html" id="treeTab">
+    <div class="layui-tab layui-tab-brief" lay-filter="treeTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this" >一级</li>
+            <li >二级</li>
+            <li >三级</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div id="treeTabCtt1" class="layui-tab-item layui-show " style="height: 400px; overflow-y: auto;">
+                <table class="layui-table" lay-skin="line" style="margin-top: 15px;">
+                    <thead>
+                    <tr>
+                        <td>序号</td>
+                        <td>用户标识</td>
+                        <td>用户昵称</td>
+                        <td>加入时间</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{# layui.each(d.first, function(i, item) { }}
+                    <tr>
+                        <td>{{i + 1}}</td>
+                        <td>{{item.memberUsername}}</td>
+                        <td>{{item.memberNickname}}</td>
+                        <td>{{item.createTime}}</td>
+                    </tr>
+                    {{# }); }}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="treeTabCtt2" class="layui-tab-item " style="height: 400px; overflow-y: auto;">
+                <table class="layui-table" lay-skin="line" style="margin-top: 15px;">
+                    <thead>
+                    <tr>
+                        <td>序号</td>
+                        <td>用户标识</td>
+                        <td>用户昵称</td>
+                        <td>加入时间</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{# layui.each(d.second, function(i, item) { }}
+                    <tr>
+                        <td>{{i + 1}}</td>
+                        <td>{{item.memberUsername}}</td>
+                        <td>{{item.memberNickname}}</td>
+                        <td>{{item.createTime}}</td>
+                    </tr>
+                    {{# }); }}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="treeTabCtt3" class="layui-tab-item" style="height: 400px; overflow-y: auto;">
+                <table class="layui-table" lay-skin="line" style="margin-top: 15px;">
+                        <thead>
+                        <tr>
+                            <td>序号</td>
+                            <td>用户标识</td>
+                            <td>用户昵称</td>
+                            <td>加入时间</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{# layui.each(d.three, function(i, item) { }}
+                        <tr>
+                            <td>{{i + 1}}</td>
+                            <td>{{item.memberUsername}}</td>
+                            <td>{{item.memberNickname}}</td>
+                            <td>{{item.createTime}}</td>
+                        </tr>
+                        {{# }); }}
+                        </tbody>
+                    </table>
+            </div>
+
+        </div>
+    </div>
+</script>
+<script type="text/html" id="treeTabView"></script>
+@}

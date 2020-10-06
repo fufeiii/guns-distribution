@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 # Mysql数据库
 spring:
   datasource:
@@ -28,6 +31,3 @@ spring:
 # 邮件发送（改为自己的账号）
 mail:
   from: sn93@qq.com
-
-server:
-  port: 8080

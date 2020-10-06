@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 # Mysql数据库
 spring:
   datasource:
@@ -36,6 +39,3 @@ logging:
   level:
     root: info
     cn.stylefeng.guns.modular.distribution.mapper: debug
-
-server:
-  port: 8080

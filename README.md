@@ -32,12 +32,16 @@ LGPL-3.0开源协议
 
 > 第零步：准备环境
 
-1、执行在项目./sql/guns_distribution.sql的sql脚本文件
+- 选择一：通过IDEA运行程序
 
-2、修改application-local.yml配置文件中mysql、redis的配置
+  1. 在数据库中执行./sql/guns_distribution.sql的脚本文件
+  2. 修改application-local.yml配置文件中mysql、redis的配置
+
+- 选择二：通过容器化运行程序
+
+  请查看【快速部署】模块
 
 > 第一步：创建租户
-> 
 
 使用guns默认账户 admin/111111 登录本系统 http://localhost:8080/
 在 用户管理  => 平台管理 创建一个平台(租户)，初始化了相关角色、职位、密码（111111）
@@ -244,3 +248,43 @@ public class DistMemberServiceImpl extends ServiceImpl<DistMemberMapper, DistMem
 ![profitcenter-profitrecord-index.png](https://i.loli.net/2020/10/05/5KVxDX7O9nqWkAY.png)
 
 ![profitcenter-withdrawal.png](https://i.loli.net/2020/10/05/aVPCI59kJSvb4MW.png)
+
+
+
+## 快速部署
+
+### 使用Dockfile
+
+将项目中的Dockerfile和guns-distribution-starter.jar上传到服务器
+
+```shell
+[root@centos7 dockerfile]# ls
+Dockerfile  guns-distribution-starter.jar
+```
+
+构建镜像并启动容器，注意：默认启动prod配置，所以需要修改prod配置中的redis和mysql配置，启动其他配置请使用--spring.profiles.active=dev进行追加
+
+```shell
+[root@centos7 dockerfile]# docker build -t guns-distribution:1.0 ./ && docker run -d -p 8080:8080 -v $(pwd)/logs:/runtime/app_logs --name guns-distribution guns-distribution:1.0
+```
+
+访问系统，默认8080端口
+
+### 使用docker-compose
+
+推荐使用此方法，一键启动，不需要自己搭建mysql和redis环境
+
+将项目中的docker-compose.yml和Dockerfile以及guns-distribution-starter.jar和guns_distribution.sql上传到服务器
+
+```shell
+[root@centos7 docker-compose]# ls
+docker-compose.yml  Dockerfile  guns_distribution.sql  guns-distribution-starter.jar
+```
+
+构建镜像并启动整个项目
+
+```shell
+[root@centos7 docker-compose]# docker-compose up -d --build
+```
+
+访问系统，默认8081端口

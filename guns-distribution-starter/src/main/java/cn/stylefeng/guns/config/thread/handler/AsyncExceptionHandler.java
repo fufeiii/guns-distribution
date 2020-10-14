@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.config.async.handler;
+package cn.stylefeng.guns.config.thread.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;

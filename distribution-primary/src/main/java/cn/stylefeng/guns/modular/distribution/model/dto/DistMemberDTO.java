@@ -101,4 +101,9 @@ public class DistMemberDTO implements Serializable, ProfitAccess {
     @ApiModelProperty(value = "用户备注", example = "这是一个用户备注信息。。。")
     private String memo;
 
+    @Override
+    public String getSubjectName() {
+        return memberUsername;
+    }
+
 }

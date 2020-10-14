@@ -61,6 +61,12 @@ public class DistPlatform implements Serializable {
     private String platformNickname;
 
     /**
+     * webhook
+     */
+    @TableField("webhook")
+    private String webhook;
+
+    /**
      * 状态
      */
     @TableField("state")

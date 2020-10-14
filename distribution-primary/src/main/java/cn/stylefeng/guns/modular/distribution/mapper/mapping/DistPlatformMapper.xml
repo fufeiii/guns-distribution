@@ -10,6 +10,7 @@
         <result column="version" property="version" />
         <result column="platform_username" property="platformUsername" />
         <result column="platform_nickname" property="platformNickname" />
+        <result column="webhook" property="webhook" />
         <result column="state" property="state" />
         <result column="memo" property="memo" />
         <result column="sys_id" property="sysId" />
@@ -17,7 +18,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id AS "id", create_time AS "createTime", update_time AS "updateTime", version AS "version", platform_username AS "platformUsername", platform_nickname AS "platformNickname", state AS "state", memo AS "memo", sys_id AS "sysId"
+        id AS "id", create_time AS "createTime", update_time AS "updateTime", version AS "version", platform_username AS "platformUsername", platform_nickname AS "platformNickname", webhook AS "webhook", state AS "state", memo AS "memo", sys_id AS "sysId"
     </sql>
 
 

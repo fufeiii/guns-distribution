@@ -22,6 +22,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
             {field: 'sysId', hide: true, title: '系统账号id'},
             {field: 'platformUsername', title: '平台账号'},
             {field: 'platformNickname', title: '平台名称'},
+            {field: 'webhook', title: 'webhook'},
             {field: 'createTime', title: '创建时间'},
             {field: 'updateTime', title: '更新时间'},
             {title: '状态', templet: function (d) {

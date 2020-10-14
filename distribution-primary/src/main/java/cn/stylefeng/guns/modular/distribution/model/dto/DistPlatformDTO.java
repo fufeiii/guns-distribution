@@ -52,6 +52,11 @@ public class DistPlatformDTO implements Serializable {
     private String platformNickname;
 
     /**
+     * webhook
+     */
+    private String webhook;
+
+    /**
      * 状态
      */
     private StateEnum state;

@@ -131,4 +131,8 @@ public class LoginContextSpringSecurityImpl implements LoginContext {
         return this.getUser().getName();
     }
 
+    @Override
+    public String getWebhook() {
+        return this.getUser().getWebhook();
+    }
 }

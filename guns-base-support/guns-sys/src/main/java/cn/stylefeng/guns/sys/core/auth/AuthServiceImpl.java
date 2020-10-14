@@ -28,6 +28,7 @@ import cn.stylefeng.guns.base.consts.ConstantsContext;
 import cn.stylefeng.guns.base.tenant.context.DataBaseNameHolder;
 import cn.stylefeng.guns.base.tenant.context.TenantCodeHolder;
 import cn.stylefeng.guns.sys.core.auth.cache.SessionManager;
+import cn.stylefeng.guns.sys.core.auth.event.LoginEvent;
 import cn.stylefeng.guns.sys.core.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.sys.core.constant.state.ManagerStatus;
 import cn.stylefeng.guns.sys.core.listener.ConfigListener;
@@ -43,6 +44,7 @@ import cn.stylefeng.roses.core.util.HttpContext;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,6 +74,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private SessionManager sessionManager;
+
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
 
     public static AuthService me() {
         return SpringContextHolder.getBean(AuthService.class);
@@ -120,10 +125,10 @@ public class AuthServiceImpl implements AuthService {
 
         //创建token
         String token = JwtTokenUtil.generateToken(payLoad);
-
+        LoginUser loginUser = user(username);
+        applicationEventPublisher.publishEvent(new LoginEvent(this, loginUser));
         //创建登录会话
-        sessionManager.createSession(token, user(username));
-
+        sessionManager.createSession(token, loginUser);
         //创建cookie
         addLoginCookie(token);
 

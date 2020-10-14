@@ -1,4 +1,4 @@
-# Duns-Distribution
+# Guns-Distribution
 
 [TOC]
 ## 前言
@@ -22,9 +22,27 @@ https://gitee.com/fufeii/guns-distribution
 
 
 
+## 环境要求
+
+Mysql
+
+Redis 
+
+
+
 ## 版权声明
 
 LGPL-3.0开源协议
+
+
+
+## 主要更新
+
+- 2020-10-14：新增 分润异常通过webhook通知到钉钉群
+
+- 2020-10-06：新增 Dockerfile和docker-compose方式部署
+
+- 2020-10-05：初始版本
 
 
 
@@ -32,19 +50,19 @@ LGPL-3.0开源协议
 
 > 第零步：准备环境
 
-- 选择一：通过IDEA运行程序
+选择一：通过IDEA运行程序
 
-  1. 在数据库中执行./sql/guns_distribution.sql的脚本文件
-  2. 修改application-local.yml配置文件中mysql、redis的配置
+1. 在数据库中执行./sql/guns_distribution.sql的脚本文件
+2. 修改application-local.yml配置文件中mysql、redis的配置
 
-- 选择二：通过容器化运行程序
+选择二：通过容器化运行程序
 
-  请查看【快速部署】模块
+​	请查看【快速部署】模块
 
 > 第一步：创建租户
 
 使用guns默认账户 admin/111111 登录本系统 http://localhost:8080/
-在 用户管理  => 平台管理 创建一个平台(租户)，初始化了相关角色、职位、密码（111111）
+在 用户管理  => 平台管理 创建一个平台(租户)，设置相关基础信息，创建完成后已经初始化了相关角色、职位、密码（111111）
 
 ![getstart-tenant-add.png](https://i.loli.net/2020/10/05/dmTWPQFtpL7unzC.png)
 
@@ -249,7 +267,9 @@ public class DistMemberServiceImpl extends ServiceImpl<DistMemberMapper, DistMem
 
 ![profitcenter-withdrawal.png](https://i.loli.net/2020/10/05/aVPCI59kJSvb4MW.png)
 
+> 其他特性
 
+![other-dingding.png](https://i.loli.net/2020/10/14/urpBzIVCQX6Ugbt.png)
 
 ## 快速部署
 
@@ -262,10 +282,10 @@ public class DistMemberServiceImpl extends ServiceImpl<DistMemberMapper, DistMem
 Dockerfile  guns-distribution-starter.jar
 ```
 
-构建镜像并启动容器，注意：默认启动prod配置，所以需要修改prod配置中的redis和mysql配置，启动其他配置请使用--spring.profiles.active=dev进行追加
+构建镜像并启动容器，注意：默认启动prod配置，所以需要修改prod配置中的redis和mysql配置，启动其他配置请使用 -e ACTIVE=your_active 进行覆盖，此配置等价于 --spring.profiles.active=your_active
 
 ```shell
-[root@centos7 dockerfile]# docker build -t guns-distribution:1.0 ./ && docker run -d -p 8080:8080 -v $(pwd)/logs:/runtime/app_logs --name guns-distribution guns-distribution:1.0
+[root@centos7 dockerfile]# docker build -t guns-distribution:1.0 ./ && docker run -d -p 8080:8080 -v $(pwd)/logs:/runtime/app_logs -e ACTIVE=prod --name guns-distribution guns-distribution:1.0
 ```
 
 访问系统，默认8080端口

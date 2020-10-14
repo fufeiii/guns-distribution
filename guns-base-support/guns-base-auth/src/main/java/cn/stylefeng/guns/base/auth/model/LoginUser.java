@@ -52,6 +52,11 @@ public class LoginUser implements UserDetails, Serializable {
     private String name;
 
     /**
+     * 租户里面的webhook
+     */
+    private String webhook;
+
+    /**
      * 邮箱
      */
     private String email;

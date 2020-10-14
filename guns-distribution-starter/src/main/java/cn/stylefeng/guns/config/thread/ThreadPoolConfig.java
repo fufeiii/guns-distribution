@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.config.async;
+package cn.stylefeng.guns.config.thread;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -8,4 +8,10 @@ package cn.stylefeng.guns.modular.distribution.profit;
  * @date 2020/8/3
  */
 public interface ProfitAccess {
+
+    /**
+     * 获得主体的名字，即触发分润的人员账号
+     */
+    String getSubjectName();
+
 }

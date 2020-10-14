@@ -26,6 +26,10 @@ public class TenantHelper {
         return LoginContextHolder.getContext().getTenantAccount();
     }
 
+    public static String getTenantWebhook() {
+        return LoginContextHolder.getContext().getWebhook();
+    }
+
     public static void setTenant(String tenant) {
         LoginContextHolder.getContext().setTenantAccount(tenant);
     }

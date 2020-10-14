@@ -85,8 +85,6 @@ public class DistMemberServiceImpl extends ServiceImpl<DistMemberMapper, DistMem
             param.setParentPath(memberEntity.getParentPath());
             // 异步执行需要租户身份
             param.setPlatformUsername(TenantHelper.getTenant());
-            // 发布邀请事件 在本事件提交后异步运行
-            applicationEventPublisher.publishEvent(new InviteMemberEvent(this, param));
         }
 
         // 保存会员信息并设置相应默认值
@@ -112,6 +110,12 @@ public class DistMemberServiceImpl extends ServiceImpl<DistMemberMapper, DistMem
                 .setState(StateEnum.ENABLE)
                 .setVersion(1);
         accountService.save(account);
+
+        if (isInviteJoin) {
+            // 发布邀请事件 在本事件提交后异步运行
+            applicationEventPublisher.publishEvent(new InviteMemberEvent(this, param));
+        }
+
     }
 
     /**
@@ -246,12 +250,13 @@ public class DistMemberServiceImpl extends ServiceImpl<DistMemberMapper, DistMem
 
         DistMemberDTO dto = new DistMemberDTO();
         ToolUtil.copyProperties(member, dto);
-        log.debug("------------> 发布会员升级事件, member=[{}]", member);
-        applicationEventPublisher.publishEvent(new RankUpgradeEvent(this, dto));
 
         // 对会员的段位进行升级
         member.setMemberRank(rankParam.getMemberRank());
         baseMapper.updateById(member);
+
+        log.debug("------------> 发布会员升级事件, member=[{}]", member);
+        applicationEventPublisher.publishEvent(new RankUpgradeEvent(this, dto));
 
     }
 

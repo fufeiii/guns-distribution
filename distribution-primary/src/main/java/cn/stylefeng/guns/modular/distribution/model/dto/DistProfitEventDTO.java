@@ -76,4 +76,9 @@ public class DistProfitEventDTO implements Serializable, ProfitAccess {
     @ApiModelProperty(value = "描述", example = "99大促商品")
     private String memo;
 
+    @Override
+    public String getSubjectName() {
+        return triggerMemberUsername;
+    }
+
 }

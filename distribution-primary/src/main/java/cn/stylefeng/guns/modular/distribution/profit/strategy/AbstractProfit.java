@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.distribution.profit.strategy;
 
+import cn.hutool.core.date.DateUtil;
 import cn.stylefeng.guns.modular.distribution.entity.*;
 import cn.stylefeng.guns.modular.distribution.enums.biz.*;
 import cn.stylefeng.guns.modular.distribution.exception.DistributionException;
@@ -44,6 +45,8 @@ public abstract class AbstractProfit implements ProfitService {
     protected DistAccountRecordService accountRecordService;
     @Autowired
     protected ProfitEventWsHandler profitEventWsHandler;
+    @Autowired
+    private WebhookService dingDingWebHookService;
 
 
     /**
@@ -55,13 +58,22 @@ public abstract class AbstractProfit implements ProfitService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void startProfit(ProfitAccess subject) throws DistributionException {
-        log.debug("\n\n----------------分润策略 {}  开始----------------", this.getClass().getSimpleName());
-        this.setTenantForCurrentThread(subject);
-        this.validateBiz(subject);
-        DistProfitEvent event = this.recordEvent(subject);
-        this.executeProfit(subject, event);
-        this.pushEvent(event);
-        log.debug("----------------分润策略 {} 结束----------------\n\n", this.getClass().getSimpleName());
+        String simpleName = this.getClass().getSimpleName();
+        log.debug("\n\n----------------分润策略 {}  开始----------------", simpleName);
+        try {
+            this.setTenantForCurrentThread(subject);
+            this.validateBiz(subject);
+            DistProfitEvent event = this.recordEvent(subject);
+            this.executeProfit(subject, event);
+            this.pushEvent(event);
+        } catch (Exception e) {
+            // 发生异常，通知钉钉群
+            String msg = "profitStrategy: " + simpleName + ",  currentTime: " + DateUtil.now() + ",  subjectName: " + subject.getSubjectName() + ",  exceptionToString: "
+                    + e.toString() + "\n堆栈信息请查看系统错误日志";
+            dingDingWebHookService.sendMessage(msg);
+            throw e;
+        }
+        log.debug("----------------分润策略 {} 结束----------------\n\n", simpleName);
     }
 
 
@@ -79,7 +91,7 @@ public abstract class AbstractProfit implements ProfitService {
             profitEventWsHandler.sendMessage(TenantHelper.getTenant(), eventVO);
         } catch (Exception e) {
             // 静默处理，需要当前存在WebSocketSession才能发送成功
-            log.debug("pushInviteEvent fail", e);
+            // log.debug("pushInviteEvent fail", e);
         }
         log.debug("【{}】 ---> 推送分润事件 结束", event.getProfitType().getMessage());
     }
@@ -251,6 +263,5 @@ public abstract class AbstractProfit implements ProfitService {
             return toString.substring(1, toString.length() - 1).concat("等, ").concat(String.valueOf(profitMembers.size())).concat("人获得分润");
         }
     }
-
 
 }

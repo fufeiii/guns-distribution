@@ -100,4 +100,9 @@ public interface LoginContext {
      * 获得当前租户的name
      */
     String getTenantName();
+
+    /**
+     * 获得当前租户的webhook
+     */
+    String getWebhook();
 }

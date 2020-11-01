@@ -3,11 +3,14 @@ package cn.stylefeng.guns.modular.distribution.listener;
 import cn.stylefeng.guns.base.auth.model.LoginUser;
 import cn.stylefeng.guns.modular.distribution.entity.DistPlatform;
 import cn.stylefeng.guns.modular.distribution.service.DistPlatformService;
+import cn.stylefeng.guns.modular.distribution.util.FunctionalUtil;
 import cn.stylefeng.guns.sys.core.auth.event.LoginEvent;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 /**
  * 租户登录事件监听器
@@ -24,12 +27,12 @@ public class LoginListener {
 
     @EventListener
     public void handle(LoginEvent loginEvent) {
-        // 执行交易分润机制
+        // 复制webhook
         DistPlatform distPlatform = new DistPlatform();
         LoginUser loginUser = loginEvent.getLoginUser();
         distPlatform.setPlatformUsername(loginUser.getAccount());
         DistPlatform pl = distPlatformService.getOne(new QueryWrapper<>(distPlatform));
-        loginUser.setWebhook(pl.getWebhook());
+        FunctionalUtil.consumerIf(Objects.nonNull(pl), loginUser, lu -> lu.setWebhook(pl.getWebhook()));
     }
 
 }

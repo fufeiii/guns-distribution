@@ -2,8 +2,8 @@ package cn.stylefeng.guns.modular.distribution.api.controller;
 
 import cn.stylefeng.guns.modular.distribution.aop.vaildate.ValidateGroup;
 import cn.stylefeng.guns.modular.distribution.api.request.CommonQuery;
-import cn.stylefeng.guns.modular.distribution.api.response.MemberIndex;
-import cn.stylefeng.guns.modular.distribution.api.response.MemberTeam;
+import cn.stylefeng.guns.modular.distribution.api.response.MemberIndexVO;
+import cn.stylefeng.guns.modular.distribution.api.response.MemberTeamVO;
 import cn.stylefeng.guns.modular.distribution.model.dto.DistMemberDTO;
 import cn.stylefeng.guns.modular.distribution.service.DistDashboardService;
 import cn.stylefeng.guns.modular.distribution.service.DistMemberService;
@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.concurrent.ExecutionException;
 
 /**
  * 会员相关api接口
@@ -44,8 +42,8 @@ public class MemberApiController {
 
     @ApiOperation(value = "首页数据总览", notes = "包含相关模块的数字")
     @GetMapping("/index")
-    public ResponseData index(@Validated(ValidateGroup.Special.class) CommonQuery query, BindingResult result) throws ExecutionException, InterruptedException {
-        MemberIndex memberIndex = distDashboardService.memberIndex4App(query.getMemberUsername());
+    public ResponseData index(@Validated(ValidateGroup.Special.class) CommonQuery query, BindingResult result) {
+        MemberIndexVO memberIndex = distDashboardService.memberIndex4App(query.getMemberUsername());
         return ResponseData.success(memberIndex);
     }
 
@@ -53,7 +51,7 @@ public class MemberApiController {
     @ApiOperation(value = "我的团队", notes = "")
     @GetMapping("/team")
     public ResponseData team(@Validated(ValidateGroup.Special.class) CommonQuery query, BindingResult result) {
-        MemberTeam team = this.distMemberService.team(query.getMemberUsername());
+        MemberTeamVO team = this.distMemberService.team(query.getMemberUsername());
         return ResponseData.success(team);
     }
 

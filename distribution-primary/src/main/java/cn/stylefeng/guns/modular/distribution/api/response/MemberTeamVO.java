@@ -4,7 +4,6 @@ import cn.stylefeng.guns.modular.distribution.model.vo.DistMemberVO;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,9 +14,7 @@ import java.util.List;
  */
 @ApiModel
 @Data
-public class MemberTeam implements Serializable {
-
-    private static final long serialVersionUID = -1535782119376687982L;
+public class MemberTeamVO {
 
     private List<DistMemberVO> first;
 

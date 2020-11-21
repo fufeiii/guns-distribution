@@ -16,10 +16,10 @@ public class TransactionUtil {
     private TransactionUtil() {
     }
 
-    private static void validate(boolean getTransaction, PlatformTransactionManager manager, TransactionDefinition definition,
+    private static void validate(boolean isGetTransaction, PlatformTransactionManager manager, TransactionDefinition definition,
                                  TransactionStatus status) {
         Assert.notNull(manager, "PlatformTransactionManager 参数不能为空！");
-        if (getTransaction) {
+        if (isGetTransaction) {
             Assert.notNull(definition, "TransactionDefinition 参数不能为空！");
         } else {
             Assert.notNull(status, "TransactionStatus 参数不能为空！");

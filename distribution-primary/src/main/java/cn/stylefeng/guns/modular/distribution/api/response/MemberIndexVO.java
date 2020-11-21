@@ -2,8 +2,8 @@ package cn.stylefeng.guns.modular.distribution.api.response;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -14,13 +14,7 @@ import java.math.BigDecimal;
  */
 @ApiModel
 @Data
-public class MemberIndex implements Serializable {
-
-    private static final long serialVersionUID = -9089901887877230535L;
-    public static final String MEMBER_GROUP = "member";
-    public static final String TODAY_GROUP = "today";
-    public static final String WITHDRAW_GROUP = "withdraw";
-    public static final String SUMMARY_GROUP = "summary";
+public class MemberIndexVO {
 
     private Member member;
     private Today today;
@@ -29,8 +23,8 @@ public class MemberIndex implements Serializable {
 
 
     @Data
-    public static class Member implements Serializable {
-        private static final long serialVersionUID = 2685971472771779500L;
+    @Accessors(chain = true)
+    public static class Member {
         private Long memberId;
         private String memberUsername;
         private String memberNickname;
@@ -39,23 +33,23 @@ public class MemberIndex implements Serializable {
     }
 
     @Data
-    public static class Today implements Serializable {
-        private static final long serialVersionUID = 6122379017148920094L;
+    @Accessors(chain = true)
+    public static class Today {
         private BigDecimal tradeMoney;
         private BigDecimal profitMoney;
         private Integer inviteCount;
     }
 
     @Data
-    public static class Withdraw implements Serializable {
-        private static final long serialVersionUID = 1898421399544677331L;
+    @Accessors(chain = true)
+    public static class Withdraw {
         private BigDecimal doneRemit;
         private BigDecimal waitRemit;
     }
 
     @Data
-    public static class Summary implements Serializable {
-        private static final long serialVersionUID = 7428763597696491797L;
+    @Accessors(chain = true)
+    public static class Summary {
         private BigDecimal allProfitMoney;
         private BigDecimal allTradeMoney;
         private BigDecimal allAvailableWithdraw;

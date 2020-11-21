@@ -1,7 +1,7 @@
 package cn.stylefeng.guns.modular.distribution.service;
 
 import cn.stylefeng.guns.base.pojo.page.LayuiPageInfo;
-import cn.stylefeng.guns.modular.distribution.api.response.MemberTeam;
+import cn.stylefeng.guns.modular.distribution.api.response.MemberTeamVO;
 import cn.stylefeng.guns.modular.distribution.entity.DistMember;
 import cn.stylefeng.guns.modular.distribution.model.dto.DistMemberDTO;
 import cn.stylefeng.guns.modular.distribution.model.vo.DistAccountVO;
@@ -77,7 +77,7 @@ public interface DistMemberService extends IService<DistMember> {
      *
      * @param parent 当前人员的父级
      */
-    MemberTeam team(String parent);
+    MemberTeamVO team(String parent);
 
     /**
      * 统计某个时间区间加入的会员个数

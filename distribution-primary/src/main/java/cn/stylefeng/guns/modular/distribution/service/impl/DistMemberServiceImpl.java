@@ -4,7 +4,7 @@ import cn.stylefeng.guns.base.consts.ConstantsContext;
 import cn.stylefeng.guns.base.pojo.page.LayuiPageFactory;
 import cn.stylefeng.guns.base.pojo.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.distribution.aop.retry.RetryOnFailure;
-import cn.stylefeng.guns.modular.distribution.api.response.MemberTeam;
+import cn.stylefeng.guns.modular.distribution.api.response.MemberTeamVO;
 import cn.stylefeng.guns.modular.distribution.entity.DistAccount;
 import cn.stylefeng.guns.modular.distribution.entity.DistMember;
 import cn.stylefeng.guns.modular.distribution.entity.DistRankParam;
@@ -262,8 +262,8 @@ public class DistMemberServiceImpl extends ServiceImpl<DistMemberMapper, DistMem
 
     @Transactional(readOnly = true)
     @Override
-    public MemberTeam team(String parent) {
-        MemberTeam team = new MemberTeam();
+    public MemberTeamVO team(String parent) {
+        MemberTeamVO team = new MemberTeamVO();
         team.setFirst(baseMapper.team(parent, 1));
         team.setSecond(baseMapper.team(parent, 2));
         team.setThree(baseMapper.team(parent, 3));

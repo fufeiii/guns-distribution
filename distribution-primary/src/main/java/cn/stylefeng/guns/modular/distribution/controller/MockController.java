@@ -3,8 +3,8 @@ package cn.stylefeng.guns.modular.distribution.controller;
 import cn.stylefeng.guns.base.pojo.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.distribution.aop.vaildate.ValidateGroup;
 import cn.stylefeng.guns.modular.distribution.api.request.CommonQuery;
-import cn.stylefeng.guns.modular.distribution.api.response.MemberIndex;
-import cn.stylefeng.guns.modular.distribution.api.response.MemberTeam;
+import cn.stylefeng.guns.modular.distribution.api.response.MemberIndexVO;
+import cn.stylefeng.guns.modular.distribution.api.response.MemberTeamVO;
 import cn.stylefeng.guns.modular.distribution.api.response.PageResponseData;
 import cn.stylefeng.guns.modular.distribution.enums.biz.MemberTypeEnum;
 import cn.stylefeng.guns.modular.distribution.enums.biz.ProfitTypeEnum;
@@ -151,7 +151,7 @@ public class MockController extends BaseController {
     @GetMapping("/forward/member/index")
     @ResponseBody
     public ResponseData forwardMemberIndex(@Validated(ValidateGroup.Special.class) CommonQuery query, BindingResult result) throws ExecutionException, InterruptedException {
-        MemberIndex memberIndex = distDashboardService.memberIndex4App(query.getMemberUsername());
+        MemberIndexVO memberIndex = distDashboardService.memberIndex4App(query.getMemberUsername());
         return ResponseData.success(memberIndex);
     }
 
@@ -197,7 +197,7 @@ public class MockController extends BaseController {
     @GetMapping("/forward/member/team")
     @ResponseBody
     public ResponseData team(@Validated(ValidateGroup.Special.class) CommonQuery query, BindingResult result) {
-        MemberTeam team = this.distMemberService.team(query.getMemberUsername());
+        MemberTeamVO team = this.distMemberService.team(query.getMemberUsername());
         return ResponseData.success(team);
     }
 

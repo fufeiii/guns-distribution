@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.concurrent.ExecutionException;
-
 /**
  * 控制台
  *
@@ -36,7 +34,7 @@ public class DistDashboardController {
      */
     @RequestMapping("/workplace/summaryNums")
     @ResponseBody
-    public ResponseData summaryNums() throws ExecutionException, InterruptedException {
+    public ResponseData summaryNums() {
         return ResponseData.success(distDashboardService.summaryNums());
     }
 

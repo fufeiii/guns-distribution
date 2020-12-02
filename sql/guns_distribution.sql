@@ -28,7 +28,7 @@ CREATE TABLE `database_info`  (
 -- ----------------------------
 -- Records of database_info
 -- ----------------------------
-INSERT INTO `database_info` VALUES (1316378072492093442, 'master', 'com.mysql.cj.jdbc.Driver', 'root', 'root', 'jdbc:mysql://47.116.1.66:3306/guns_distribution?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT', '主数据源，项目启动数据源！', '2020-10-14 21:59:24');
+INSERT INTO `database_info` VALUES (1340559463169441793, 'master', 'com.mysql.cj.jdbc.Driver', 'root', 'root', 'jdbc:mysql://localhost:3306/guns_distribution?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT', '主数据源，项目启动数据源！', '2020-12-20 15:27:37');
 
 -- ----------------------------
 -- Table structure for dist_account
@@ -54,21 +54,26 @@ CREATE TABLE `dist_account`  (
 -- ----------------------------
 -- Records of dist_account
 -- ----------------------------
-INSERT INTO `dist_account` VALUES (129, '2020-10-05 12:55:33', NULL, 8, 14.11000000, 14.11000000, 0.00000000, 0, 0, 0, 0, 0);
-INSERT INTO `dist_account` VALUES (130, '2020-10-05 12:55:51', NULL, 10, 28.38000000, 28.38000000, 0.00000000, 0, 0, 0, 0, 0);
-INSERT INTO `dist_account` VALUES (131, '2020-10-05 12:56:08', NULL, 9, 51.64000000, 51.64000000, 0.00000000, 0, 0, 0, 0, 0);
-INSERT INTO `dist_account` VALUES (132, '2020-10-05 12:56:22', NULL, 2, 5.00000000, 5.00000000, 0.00000000, 0, 0, 0, 0, 0);
-INSERT INTO `dist_account` VALUES (133, '2020-10-05 12:56:40', NULL, 3, 10.00000000, 10.00000000, 0.00000000, 0, 0, 0, 0, 0);
-INSERT INTO `dist_account` VALUES (134, '2020-10-05 12:56:56', NULL, 2, 5.00000000, 5.00000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (129, '2020-10-05 12:55:33', NULL, 9, 15.11000000, 15.11000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (130, '2020-10-05 12:55:51', NULL, 13, 36.49000000, 36.49000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (131, '2020-10-05 12:56:08', NULL, 11, 59.64000000, 59.64000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (132, '2020-10-05 12:56:22', NULL, 3, 7.22000000, 7.22000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (133, '2020-10-05 12:56:40', NULL, 5, 18.34000000, 18.34000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (134, '2020-10-05 12:56:56', NULL, 4, 25.01000000, 25.01000000, 0.00000000, 0, 0, 0, 0, 0);
 INSERT INTO `dist_account` VALUES (135, '2020-10-05 12:57:15', NULL, 5, 8.00000000, 8.00000000, 0.00000000, 0, 0, 0, 0, 0);
 INSERT INTO `dist_account` VALUES (136, '2020-10-05 12:57:35', NULL, 1, 0.00000000, 0.00000000, 0.00000000, 0, 0, 0, 0, 0);
 INSERT INTO `dist_account` VALUES (137, '2020-10-05 12:59:14', NULL, 6, 48.29000000, 38.19000000, 10.10000000, 0, 0, 0, 0, 0);
 INSERT INTO `dist_account` VALUES (138, '2020-10-05 12:59:29', NULL, 2, 0.00000000, 0.00000000, 0.00000000, 0, 0, 0, 0, 1);
-INSERT INTO `dist_account` VALUES (139, '2020-10-05 13:06:42', NULL, 4, 31.21000000, 31.21000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (139, '2020-10-05 13:06:42', NULL, 5, 36.21000000, 36.21000000, 0.00000000, 0, 0, 0, 0, 0);
 INSERT INTO `dist_account` VALUES (140, '2020-10-05 13:07:04', NULL, 3, 27.44000000, 27.44000000, 0.00000000, 0, 0, 0, 0, 0);
 INSERT INTO `dist_account` VALUES (141, '2020-10-05 13:07:17', NULL, 3, 38.66000000, 38.66000000, 0.00000000, 0, 0, 0, 0, 0);
 INSERT INTO `dist_account` VALUES (142, '2020-10-05 13:08:48', NULL, 1, 0.00000000, 0.00000000, 0.00000000, 0, 0, 0, 0, 0);
-INSERT INTO `dist_account` VALUES (143, '2020-10-05 14:54:33', NULL, 3, 0.00000000, 0.00000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (143, '2020-10-05 14:54:33', NULL, 6, 40.01000000, 40.01000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (144, '2020-11-21 13:49:55', NULL, 1, 0.00000000, 0.00000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (145, '2020-12-02 21:08:55', NULL, 1, 0.00000000, 0.00000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (146, '2020-12-02 21:09:42', NULL, 1, 0.00000000, 0.00000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (147, '2020-12-02 21:10:40', NULL, 3, 34.97000000, 34.97000000, 0.00000000, 0, 0, 0, 0, 0);
+INSERT INTO `dist_account` VALUES (148, '2020-12-20 15:30:42', NULL, 1, 0.00000000, 0.00000000, 0.00000000, 0, 0, 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for dist_account_record
@@ -136,6 +141,23 @@ INSERT INTO `dist_account_record` VALUES (1313018333062246402, '2020-10-05 15:29
 INSERT INTO `dist_account_record` VALUES (1313018517791977474, '2020-10-05 15:29:44', 'aigou', 'aigou2', 0, 30.40000000, 28.38000000, 2.02000000, 1, 1313017399070437378, '用户提现取出2元，手续费0.02元');
 INSERT INTO `dist_account_record` VALUES (1314555247594655746, '2020-10-09 21:16:08', 'aigou', 'aigou1', 0, 8.14000000, 11.11000000, 2.97000000, 0, 1314555247166836738, NULL);
 INSERT INTO `dist_account_record` VALUES (1314563953971453954, '2020-10-09 21:50:44', 'aigou', 'aigou1', 0, 11.11000000, 14.11000000, 3.00000000, 0, 1314563953547829249, NULL);
+INSERT INTO `dist_account_record` VALUES (1330025630548471810, '2020-11-21 13:49:55', 'aigou', 'aigou3', 0, 51.64000000, 56.64000000, 5.00000000, 0, 1330025630032572418, NULL);
+INSERT INTO `dist_account_record` VALUES (1330025767752544257, '2020-11-21 13:50:28', 'aigou', 'aigou3', 0, 56.64000000, 59.64000000, 3.00000000, 0, 1330025767303753730, NULL);
+INSERT INTO `dist_account_record` VALUES (1330025770894077954, '2020-11-21 13:50:28', 'aigou', 'aigou2', 0, 28.38000000, 30.38000000, 2.00000000, 0, 1330025770474647554, NULL);
+INSERT INTO `dist_account_record` VALUES (1330025773708455937, '2020-11-21 13:50:28', 'aigou', 'aigou1', 0, 14.11000000, 15.11000000, 1.00000000, 0, 1330025773297414146, NULL);
+INSERT INTO `dist_account_record` VALUES (1334122374399893505, '2020-12-02 21:08:55', 'aigou', 'aigou11', 0, 31.21000000, 36.21000000, 5.00000000, 0, 1334122374009823233, NULL);
+INSERT INTO `dist_account_record` VALUES (1334122573709025281, '2020-12-02 21:09:42', 'aigou', 'aigou2', 0, 30.38000000, 35.38000000, 5.00000000, 0, 1334122573310566401, NULL);
+INSERT INTO `dist_account_record` VALUES (1334122818618630146, '2020-12-02 21:10:41', 'aigou', 'aigou15', 0, 0.00000000, 5.00000000, 5.00000000, 0, 1334122818232754177, NULL);
+INSERT INTO `dist_account_record` VALUES (1334126989828792321, '2020-12-02 21:27:15', 'aigou', 'aigou15', 0, 5.00000000, 20.03000000, 15.03000000, 0, 1334126989442916353, NULL);
+INSERT INTO `dist_account_record` VALUES (1334126992655753217, '2020-12-02 21:27:15', 'aigou', 'aigou6', 0, 5.00000000, 15.02000000, 10.02000000, 0, 1334126992236322818, NULL);
+INSERT INTO `dist_account_record` VALUES (1334126995398828033, '2020-12-02 21:27:15', 'aigou', 'aigou5', 0, 10.00000000, 15.01000000, 5.01000000, 0, 1334126995004563457, NULL);
+INSERT INTO `dist_account_record` VALUES (1340560241510629377, '2020-12-20 15:30:42', 'aigou', 'aigou18', 0, 0.00000000, 5.00000000, 5.00000000, 0, 1340560241137336321, NULL);
+INSERT INTO `dist_account_record` VALUES (1340560389296930817, '2020-12-20 15:31:17', 'aigou', 'aigou18', 0, 5.00000000, 34.97000000, 29.97000000, 0, 1340560388973969410, NULL);
+INSERT INTO `dist_account_record` VALUES (1340560391641546754, '2020-12-20 15:31:17', 'aigou', 'aigou15', 0, 20.03000000, 40.01000000, 19.98000000, 0, 1340560391306002434, NULL);
+INSERT INTO `dist_account_record` VALUES (1340560393944219650, '2020-12-20 15:31:17', 'aigou', 'aigou6', 0, 15.02000000, 25.01000000, 9.99000000, 0, 1340560393617063938, NULL);
+INSERT INTO `dist_account_record` VALUES (1340560781942505473, '2020-12-20 15:32:51', 'aigou', 'aigou5', 0, 15.01000000, 18.34000000, 3.33000000, 0, 1340560781598572545, NULL);
+INSERT INTO `dist_account_record` VALUES (1340560784308092929, '2020-12-20 15:32:51', 'aigou', 'aigou4', 0, 5.00000000, 7.22000000, 2.22000000, 0, 1340560783976742913, NULL);
+INSERT INTO `dist_account_record` VALUES (1340560786610765825, '2020-12-20 15:32:51', 'aigou', 'aigou2', 0, 35.38000000, 36.49000000, 1.11000000, 0, 1340560786287804418, NULL);
 
 -- ----------------------------
 -- Table structure for dist_member
@@ -161,26 +183,31 @@ CREATE TABLE `dist_member`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_member_username`(`member_username`) USING BTREE,
   INDEX `idx_parent_username`(`fir_parent`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 144 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 149 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dist_member
 -- ----------------------------
-INSERT INTO `dist_member` VALUES (129, '2020-10-05 12:55:33', NULL, 1, 'aigou', 'aigou1', '艾购1', '', '', NULL, NULL, NULL, 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (130, '2020-10-05 12:55:51', NULL, 1, 'aigou', 'aigou2', '艾购2', '', 'aigou1', NULL, NULL, 'aigou1', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (131, '2020-10-05 12:56:08', NULL, 1, 'aigou', 'aigou3', '艾购3', '', 'aigou2', 'aigou1', NULL, 'aigou2.aigou1', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (132, '2020-10-05 12:56:22', NULL, 1, 'aigou', 'aigou4', '艾购4', '', 'aigou2', 'aigou1', NULL, 'aigou2.aigou1', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (133, '2020-10-05 12:56:40', NULL, 1, 'aigou', 'aigou5', '艾购5', '', 'aigou4', 'aigou2', 'aigou1', 'aigou4.aigou2.aigou1', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (134, '2020-10-05 12:56:56', NULL, 1, 'aigou', 'aigou6', '艾购6', '', 'aigou5', 'aigou4', 'aigou2', 'aigou5.aigou4.aigou2', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (135, '2020-10-05 12:57:14', NULL, 1, 'aigou', 'aigou7', '艾购7', '', 'aigou3', 'aigou2', 'aigou1', 'aigou3.aigou2.aigou1', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (136, '2020-10-05 12:57:35', NULL, 1, 'aigou', 'aigou8', '艾购8', '', 'aigou7', 'aigou3', 'aigou2', 'aigou7.aigou3.aigou2', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (137, '2020-10-05 12:59:13', NULL, 1, 'aigou', 'aigou9', '艾购9', '', 'aigou3', 'aigou2', 'aigou1', 'aigou3.aigou2.aigou1', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (138, '2020-10-05 12:59:28', NULL, 1, 'aigou', 'aigou10', '艾购10', '', 'aigou5', 'aigou4', 'aigou2', 'aigou5.aigou4.aigou2', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (139, '2020-10-05 13:06:42', NULL, 1, 'aigou', 'aigou11', '艾购11', '', 'aigou9', 'aigou3', 'aigou2', 'aigou9.aigou3.aigou2', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (140, '2020-10-05 13:07:03', NULL, 1, 'aigou', 'aigou12', '艾购12', '', 'aigou11', 'aigou9', 'aigou3', 'aigou11.aigou9.aigou3', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (141, '2020-10-05 13:07:17', NULL, 1, 'aigou', 'aigou13', '艾购13', '', 'aigou12', 'aigou11', 'aigou9', 'aigou12.aigou11.aigou9', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (142, '2020-10-05 13:08:48', NULL, 1, 'aigou', 'aigou14', '艾购14', '', 'aigou13', 'aigou12', 'aigou11', 'aigou13.aigou12.aigou11', 0, 0, 0, '');
-INSERT INTO `dist_member` VALUES (143, '2020-10-05 14:54:32', NULL, 1, 'aigou', 'aigou15', '艾购15', '', 'aigou6', 'aigou5', 'aigou4', 'aigou6.aigou5.aigou4', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (129, '2020-10-05 12:55:33', NULL, 1, 'aigou', 'aigou1', '艾购1', 'http://i.loli.net/2020/09/06/8LEKZHr76YoNa35.jpg', NULL, NULL, NULL, NULL, 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (130, '2020-10-05 12:55:51', NULL, 1, 'aigou', 'aigou2', '艾购2', 'http://i.loli.net/2020/09/06/BILg54hcM3twpy8.jpg', 'aigou1', NULL, NULL, 'aigou1', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (131, '2020-10-05 12:56:08', NULL, 1, 'aigou', 'aigou3', '艾购3', 'http://i.loli.net/2020/09/19/bZ48rMSepctujOk.jpg', 'aigou2', 'aigou1', NULL, 'aigou2.aigou1', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (132, '2020-10-05 12:56:22', NULL, 1, 'aigou', 'aigou4', '艾购4', 'http://i.loli.net/2020/09/19/bZ48rMSepctujOk.jpg', 'aigou2', 'aigou1', NULL, 'aigou2.aigou1', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (133, '2020-10-05 12:56:40', NULL, 1, 'aigou', 'aigou5', '艾购5', 'http://i.loli.net/2020/09/06/dKLb1MXqZ95F8in.jpg', 'aigou4', 'aigou2', 'aigou1', 'aigou4.aigou2.aigou1', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (134, '2020-10-05 12:56:56', NULL, 1, 'aigou', 'aigou6', '艾购6', 'http://i.loli.net/2020/09/06/sStzTg7VQIXAHmM.jpg', 'aigou5', 'aigou4', 'aigou2', 'aigou5.aigou4.aigou2', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (135, '2020-10-05 12:57:14', NULL, 1, 'aigou', 'aigou7', '艾购7', 'http://i.loli.net/2020/09/06/fok8UVrzILC1WAT.jpg', 'aigou3', 'aigou2', 'aigou1', 'aigou3.aigou2.aigou1', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (136, '2020-10-05 12:57:35', NULL, 1, 'aigou', 'aigou8', '艾购8', 'http://i.loli.net/2020/09/06/uTfjGZdsIeEA63D.jpg', 'aigou7', 'aigou3', 'aigou2', 'aigou7.aigou3.aigou2', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (137, '2020-10-05 12:59:13', NULL, 1, 'aigou', 'aigou9', '艾购9', 'http://i.loli.net/2020/09/06/HKqDwCMrcjVxf6i.jpg', 'aigou3', 'aigou2', 'aigou1', 'aigou3.aigou2.aigou1', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (138, '2020-10-05 12:59:28', NULL, 1, 'aigou', 'aigou10', '艾购10', 'http://i.loli.net/2020/09/06/fc1ijrhSTU9XEVZ.jpg', 'aigou5', 'aigou4', 'aigou2', 'aigou5.aigou4.aigou2', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (139, '2020-10-05 13:06:42', NULL, 1, 'aigou', 'aigou11', '艾购11', 'http://i.loli.net/2020/09/06/B13MpNnSrkicsVG.jpg', 'aigou9', 'aigou3', 'aigou2', 'aigou9.aigou3.aigou2', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (140, '2020-10-05 13:07:03', NULL, 1, 'aigou', 'aigou12', '艾购12', 'http://i.loli.net/2020/09/06/VnTNALlzgkwZ5Oo.jpg', 'aigou11', 'aigou9', 'aigou3', 'aigou11.aigou9.aigou3', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (141, '2020-10-05 13:07:17', NULL, 1, 'aigou', 'aigou13', '艾购13', 'http://i.loli.net/2020/09/06/CEJhog7KFUx5buP.jpg', 'aigou12', 'aigou11', 'aigou9', 'aigou12.aigou11.aigou9', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (142, '2020-10-05 13:08:48', NULL, 1, 'aigou', 'aigou14', '艾购14', 'http://i.loli.net/2020/09/06/GFaYoiLRDPHtyQ9.jpg', 'aigou13', 'aigou12', 'aigou11', 'aigou13.aigou12.aigou11', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (143, '2020-10-05 14:54:32', NULL, 1, 'aigou', 'aigou15', '艾购15', 'http://i.loli.net/2020/09/06/DLRtx7FYjAMgdZ2.jpg', 'aigou6', 'aigou5', 'aigou4', 'aigou6.aigou5.aigou4', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (144, '2020-11-21 13:49:54', NULL, 1, 'aigou', 'test1', '小测测', 'http://i.loli.net/2020/09/06/fzRbgZGiUn7StcW.jpg', 'aigou3', 'aigou2', 'aigou1', 'aigou3.aigou2.aigou1', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (145, '2020-12-02 21:08:54', NULL, 1, 'aigou', 'aigou16', '艾购一六', 'http://i.loli.net/2020/09/06/PFq6kNpmSXfoMEy.jpg', 'aigou11', 'aigou9', 'aigou3', 'aigou11.aigou9.aigou3', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (146, '2020-12-02 21:09:42', NULL, 1, 'aigou', 'aigou17', '艾购①⑦', 'http://i.loli.net/2020/09/06/aTxBHgWVqcouX8h.jpg', 'aigou2', 'aigou1', NULL, 'aigou2.aigou1', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (147, '2020-12-02 21:10:40', NULL, 1, 'aigou', 'aigou18', '艾购一巴', 'http://i.loli.net/2020/09/06/8O5reGbujBl1dTC.jpg', 'aigou15', 'aigou6', 'aigou5', 'aigou15.aigou6.aigou5', 0, 0, 0, '');
+INSERT INTO `dist_member` VALUES (148, '2020-12-20 15:30:42', NULL, 1, 'aigou', 'aigou181', '一八一', '', 'aigou18', 'aigou15', 'aigou6', 'aigou18.aigou15.aigou6', 0, 0, 0, '');
 
 -- ----------------------------
 -- Table structure for dist_platform
@@ -248,6 +275,15 @@ INSERT INTO `dist_profit_event` VALUES (1312984864219213826, '2020-10-05 13:16:0
 INSERT INTO `dist_profit_event` VALUES (1313009663381352450, '2020-10-05 14:54:33', 'aigou', 1, 'aigou15', 'INVITE_1601880872942', NULL, 'aigou6等, 1人获得分润');
 INSERT INTO `dist_profit_event` VALUES (1314555244969021442, '2020-10-09 21:16:08', 'aigou', 0, 'aigou2', 'aigou2_order123', 99.00000000, 'aigou1等, 1人获得分润');
 INSERT INTO `dist_profit_event` VALUES (1314563950607622146, '2020-10-09 21:50:44', 'aigou', 0, 'aigou2', 'aigou2_order1234', 100.00000000, 'aigou1等, 1人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1330025627239165954, '2020-11-21 13:49:55', 'aigou', 1, 'test1', 'INVITE_1605937794867', NULL, 'aigou3等, 1人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1330025765223378946, '2020-11-21 13:50:28', 'aigou', 0, 'test1', 'order_test1_123', 100.00000000, 'aigou3, aigou2, aigou1等, 3人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1334122371572932610, '2020-12-02 21:08:55', 'aigou', 1, 'aigou16', 'INVITE_1606914534829', NULL, 'aigou11等, 1人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1334122570802372609, '2020-12-02 21:09:42', 'aigou', 1, 'aigou17', 'INVITE_1606914582334', NULL, 'aigou2等, 1人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1334122815904915457, '2020-12-02 21:10:41', 'aigou', 1, 'aigou18', 'INVITE_1606914640770', NULL, 'aigou15等, 1人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1334126987505147906, '2020-12-02 21:27:15', 'aigou', 0, 'aigou18', 'order_aigou18_123', 501.00000000, 'aigou15, aigou6, aigou5等, 3人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1340560238931132417, '2020-12-20 15:30:42', 'aigou', 1, 'aigou181', 'INVITE_1608449442016', NULL, 'aigou18等, 1人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1340560387271081985, '2020-12-20 15:31:17', 'aigou', 0, 'aigou181', 'order_aigou181_123', 999.00000000, 'aigou18, aigou15, aigou6等, 3人获得分润');
+INSERT INTO `dist_profit_event` VALUES (1340560780000542722, '2020-12-20 15:32:51', 'aigou', 0, 'aigou6', 'order_aigou6_123', 111.00000000, 'aigou5, aigou4, aigou2等, 3人获得分润');
 
 -- ----------------------------
 -- Table structure for dist_profit_param
@@ -278,6 +314,9 @@ INSERT INTO `dist_profit_param` VALUES (1312017040961302530, '2020-10-02 21:10:1
 INSERT INTO `dist_profit_param` VALUES (1312017079783780353, '2020-10-02 21:10:23', NULL, 1, 'aigou', 0, 0, 0, 3, 0.01000000, 0, 0, 0);
 INSERT INTO `dist_profit_param` VALUES (1312017729993175041, '2020-10-02 21:12:58', NULL, 1, 'aigou', 0, 1, 1, 1, 5.00000000, 0, 0, 0);
 INSERT INTO `dist_profit_param` VALUES (1312017835014352897, '2020-10-02 21:13:23', NULL, 2, 'aigou', 0, 2, 1, 0, 2.00000000, 0, 1, 0);
+INSERT INTO `dist_profit_param` VALUES (1334130761644744706, '2020-12-02 21:42:15', NULL, 1, 'aigou', 0, 2, 1, 0, 2.00000000, 0, 2, 0);
+INSERT INTO `dist_profit_param` VALUES (1334130865973862402, '2020-12-02 21:42:40', NULL, 1, 'aigou', 0, 2, 1, 0, 3.00000000, 0, 3, 0);
+INSERT INTO `dist_profit_param` VALUES (1334130931421782017, '2020-12-02 21:42:56', NULL, 1, 'aigou', 0, 2, 1, 0, 3.00000000, 0, 4, 0);
 
 -- ----------------------------
 -- Table structure for dist_profit_record
@@ -335,6 +374,23 @@ INSERT INTO `dist_profit_record` VALUES (1312984874302320642, '2020-10-05 13:16:
 INSERT INTO `dist_profit_record` VALUES (1313009665965043714, '2020-10-05 14:54:33', 1313009663381352450, 0, 'aigou6', 5.00000000, NULL);
 INSERT INTO `dist_profit_record` VALUES (1314555247166836738, '2020-10-09 21:16:08', 1314555244969021442, 0, 'aigou1', 2.97000000, NULL);
 INSERT INTO `dist_profit_record` VALUES (1314563953547829249, '2020-10-09 21:50:44', 1314563950607622146, 0, 'aigou1', 3.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1330025630032572418, '2020-11-21 13:49:55', 1330025627239165954, 0, 'aigou3', 5.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1330025767303753730, '2020-11-21 13:50:28', 1330025765223378946, 0, 'aigou3', 3.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1330025770474647554, '2020-11-21 13:50:28', 1330025765223378946, 0, 'aigou2', 2.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1330025773297414146, '2020-11-21 13:50:28', 1330025765223378946, 0, 'aigou1', 1.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1334122374009823233, '2020-12-02 21:08:55', 1334122371572932610, 0, 'aigou11', 5.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1334122573310566401, '2020-12-02 21:09:42', 1334122570802372609, 0, 'aigou2', 5.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1334122818232754177, '2020-12-02 21:10:41', 1334122815904915457, 0, 'aigou15', 5.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1334126989442916353, '2020-12-02 21:27:15', 1334126987505147906, 0, 'aigou15', 15.03000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1334126992236322818, '2020-12-02 21:27:15', 1334126987505147906, 0, 'aigou6', 10.02000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1334126995004563457, '2020-12-02 21:27:15', 1334126987505147906, 0, 'aigou5', 5.01000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1340560241137336321, '2020-12-20 15:30:42', 1340560238931132417, 0, 'aigou18', 5.00000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1340560388973969410, '2020-12-20 15:31:17', 1340560387271081985, 0, 'aigou18', 29.97000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1340560391306002434, '2020-12-20 15:31:17', 1340560387271081985, 0, 'aigou15', 19.98000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1340560393617063938, '2020-12-20 15:31:17', 1340560387271081985, 0, 'aigou6', 9.99000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1340560781598572545, '2020-12-20 15:32:51', 1340560780000542722, 0, 'aigou5', 3.33000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1340560783976742913, '2020-12-20 15:32:51', 1340560780000542722, 0, 'aigou4', 2.22000000, NULL);
+INSERT INTO `dist_profit_record` VALUES (1340560786287804418, '2020-12-20 15:32:51', 1340560780000542722, 0, 'aigou2', 1.11000000, NULL);
 
 -- ----------------------------
 -- Table structure for dist_rank_param
@@ -476,7 +532,7 @@ INSERT INTO `sys_config` VALUES (1145915627211370499, '文件上传路径', 'GUN
 INSERT INTO `sys_config` VALUES (1145915627211370500, 'BPMN文件上传路径', 'GUNS_BPMN_FILE_UPLOAD_PATH', 'N', NULL, 'D:/tmp/', '工作流文件上传默认目录', '2019-08-30 09:10:40', 1, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1145915627211370501, '获取系统的密钥过期时间', 'GUNS_JWT_SECRET_EXPIRE', 'N', NULL, '86400', '获取系统地密钥过期时间（单位：秒），默认1天', '2019-10-16 23:02:39', 1, '2020-08-08 17:20:58', 1);
 INSERT INTO `sys_config` VALUES (1145915627211370502, '获取token的header标识', 'GUNS_TOKEN_HEADER_NAME', 'N', NULL, 'Authorization', '获取token的header标识', '2019-10-16 23:02:39', 1, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1145915627211370503, '获取租户是否开启的标识', 'GUNS_TENANT_OPEN', 'Y', 1106120265689055233, 'DISABLE', '获取租户是否开启的标识，默认是关的', '2019-10-16 23:02:39', 1, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1145915627211370503, '获取租户是否开启的标识', 'GUNS_TENANT_OPEN', 'Y', 1106120265689055233, 'DISABLE', '获取租户是否开启的标识，默认是关的', '2019-10-16 23:02:39', 1, '2020-12-10 15:10:56', 1);
 INSERT INTO `sys_config` VALUES (1145915627211370504, '系统的密钥', 'GUNS_JWT_SECRET', 'N', NULL, 'kpvc689sjt7x4sd0hchh6ow1bpcweoqi', '暂不清楚', '2019-10-16 23:02:39', 1, '2020-08-08 17:20:58', 1);
 INSERT INTO `sys_config` VALUES (1294555100462792705, '分销模块父级路径长度', 'GUNS_DIST_PARENT_PATH_LENGTH', 'N', NULL, '3', '【关键参数】规定parent_path字段记录的上级会员的个数', '2020-08-15 16:42:42', 1, '2020-09-12 17:43:55', 1);
 INSERT INTO `sys_config` VALUES (1299652449673437186, '分销提现百分比', 'GUNS_DIST_WITHDRAW_RATIO', 'N', NULL, '1', '【关键参数】收取百分之一的手续费。请勿随意乱动', '2020-08-29 18:17:45', 1, '2020-09-12 17:43:05', 1);
@@ -625,6 +681,10 @@ CREATE TABLE `sys_login_log`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '登录记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of sys_login_log
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
@@ -756,6 +816,7 @@ INSERT INTO `sys_menu` VALUES (1299915115524612098, 'DIST_ACCOUNT_RECORD', 'DIST
 INSERT INTO `sys_menu` VALUES (1300045146670362625, 'DIST_PROFIT_EVENT', 'DIST_PROFIT_CENTER', '[0],[DIST_PROFIT_CENTER],', '分润事件', 'layui-icon-star-fill', '/distProfitEvent', 2, 2, 'Y', NULL, 'ENABLE', NULL, NULL, 'BASE_SYSTEM', '2020-08-30 20:18:11', '2020-08-30 20:21:03', 1, 1);
 INSERT INTO `sys_menu` VALUES (1300095232238448642, 'DIST_MEMBER_TEAM', 'DIST_MEMBER_MANAGE', '[0],[DIST_MEMBER_MANAGE],', '会员层级', 'layui-icon-star-fill', '#', 1, 2, 'Y', NULL, 'ENABLE', NULL, NULL, 'BASE_SYSTEM', '2020-08-30 23:37:13', '2020-09-07 23:11:45', 1, 1);
 INSERT INTO `sys_menu` VALUES (1301774643555741697, 'DIST_CONSOLE', 'dashboard', '[0],[dashboard],', '分销总览', 'layui-icon-star-fill', '/distDashboard/workplace', 50, 2, 'Y', NULL, 'ENABLE', NULL, NULL, 'BASE_SYSTEM', '2020-09-04 14:50:35', '2020-10-05 16:45:39', 1, 1);
+INSERT INTO `sys_menu` VALUES (1334870115371470849, 'business_statistics', 'dashboard', '[0],[dashboard],', '运营统计', 'layui-icon-star-fill', '/distDashboard/businessStatistics', 60, 2, 'Y', NULL, 'ENABLE', NULL, NULL, 'BASE_SYSTEM', '2020-12-04 22:40:11', '2020-12-04 22:53:56', 1, 1);
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -794,6 +855,10 @@ CREATE TABLE `sys_operation_log`  (
   `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL COMMENT '备注',
   PRIMARY KEY (`operation_log_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_operation_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_position
@@ -932,33 +997,34 @@ INSERT INTO `sys_relation` VALUES (1296842903112462338, 1279765513257369601, 1);
 INSERT INTO `sys_relation` VALUES (1296842903506726914, 1270366386065010689, 1);
 INSERT INTO `sys_relation` VALUES (1296842903913574401, 1270366386065010690, 1);
 INSERT INTO `sys_relation` VALUES (1296842904291061761, 1270366386065010691, 1);
-INSERT INTO `sys_relation` VALUES (1313037413521629185, 171, 6);
-INSERT INTO `sys_relation` VALUES (1313037413907505153, 149, 6);
-INSERT INTO `sys_relation` VALUES (1313037414297575425, 1289581144177684481, 6);
-INSERT INTO `sys_relation` VALUES (1313037414683451393, 172, 6);
-INSERT INTO `sys_relation` VALUES (1313037415077715970, 1111545968697860098, 6);
-INSERT INTO `sys_relation` VALUES (1313037415492952066, 1301774643555741697, 6);
-INSERT INTO `sys_relation` VALUES (1313037415920771074, 1270674446276964354, 6);
-INSERT INTO `sys_relation` VALUES (1313037416298258434, 1270366386190839809, 6);
-INSERT INTO `sys_relation` VALUES (1313037416700911618, 1270366386190839810, 6);
-INSERT INTO `sys_relation` VALUES (1313037417086787585, 1270366386190839811, 6);
-INSERT INTO `sys_relation` VALUES (1313037417518800897, 1270366386190839812, 6);
-INSERT INTO `sys_relation` VALUES (1313037417904676866, 1296835121596407810, 6);
-INSERT INTO `sys_relation` VALUES (1313037418294747138, 1296835798540296193, 6);
-INSERT INTO `sys_relation` VALUES (1313037418693206017, 1296836240330530817, 6);
-INSERT INTO `sys_relation` VALUES (1313037419062304770, 1296836240330530818, 6);
-INSERT INTO `sys_relation` VALUES (1313037419515289602, 1279765513257369601, 6);
-INSERT INTO `sys_relation` VALUES (1313037419926331393, 1270366385825935361, 6);
-INSERT INTO `sys_relation` VALUES (1313037420328984577, 1270366385997901826, 6);
-INSERT INTO `sys_relation` VALUES (1313037420756803586, 1270366385997901827, 6);
-INSERT INTO `sys_relation` VALUES (1313037421272702977, 1270366385997901828, 6);
-INSERT INTO `sys_relation` VALUES (1313037421662773249, 1270366385997901829, 6);
-INSERT INTO `sys_relation` VALUES (1313037422078009346, 1294298215725678594, 6);
-INSERT INTO `sys_relation` VALUES (1313037422455496705, 1299915115524612098, 6);
-INSERT INTO `sys_relation` VALUES (1313037425206960130, 1279766092016795649, 6);
-INSERT INTO `sys_relation` VALUES (1313037425609613313, 1289828284640579586, 6);
-INSERT INTO `sys_relation` VALUES (1313037426033238018, 1296841700173492226, 6);
-INSERT INTO `sys_relation` VALUES (1313037426431696898, 1300045146670362625, 6);
+INSERT INTO `sys_relation` VALUES (1334873442092183553, 171, 6);
+INSERT INTO `sys_relation` VALUES (1334873442511613954, 149, 6);
+INSERT INTO `sys_relation` VALUES (1334873442863935489, 1289581144177684481, 6);
+INSERT INTO `sys_relation` VALUES (1334873443249811458, 172, 6);
+INSERT INTO `sys_relation` VALUES (1334873443606327297, 1111545968697860098, 6);
+INSERT INTO `sys_relation` VALUES (1334873443954454529, 1301774643555741697, 6);
+INSERT INTO `sys_relation` VALUES (1334873444310970370, 1334870115371470849, 6);
+INSERT INTO `sys_relation` VALUES (1334873444667486210, 1270674446276964354, 6);
+INSERT INTO `sys_relation` VALUES (1334873445032390658, 1270366386190839809, 6);
+INSERT INTO `sys_relation` VALUES (1334873445384712193, 1270366386190839810, 6);
+INSERT INTO `sys_relation` VALUES (1334873445766393857, 1270366386190839811, 6);
+INSERT INTO `sys_relation` VALUES (1334873446110326786, 1270366386190839812, 6);
+INSERT INTO `sys_relation` VALUES (1334873446466842626, 1296835121596407810, 6);
+INSERT INTO `sys_relation` VALUES (1334873446865301506, 1296835798540296193, 6);
+INSERT INTO `sys_relation` VALUES (1334873447246983169, 1296836240330530817, 6);
+INSERT INTO `sys_relation` VALUES (1334873447628664834, 1296836240330530818, 6);
+INSERT INTO `sys_relation` VALUES (1334873448018735105, 1279765513257369601, 6);
+INSERT INTO `sys_relation` VALUES (1334873448425582594, 1270366385825935361, 6);
+INSERT INTO `sys_relation` VALUES (1334873448803069954, 1270366385997901826, 6);
+INSERT INTO `sys_relation` VALUES (1334873449222500353, 1270366385997901827, 6);
+INSERT INTO `sys_relation` VALUES (1334873449570627586, 1270366385997901828, 6);
+INSERT INTO `sys_relation` VALUES (1334873449927143425, 1270366385997901829, 6);
+INSERT INTO `sys_relation` VALUES (1334873450304630785, 1294298215725678594, 6);
+INSERT INTO `sys_relation` VALUES (1334873450673729538, 1299915115524612098, 6);
+INSERT INTO `sys_relation` VALUES (1334873451021856769, 1279766092016795649, 6);
+INSERT INTO `sys_relation` VALUES (1334873451378372610, 1289828284640579586, 6);
+INSERT INTO `sys_relation` VALUES (1334873451747471361, 1296841700173492226, 6);
+INSERT INTO `sys_relation` VALUES (1334873452129153025, 1300045146670362625, 6);
 
 -- ----------------------------
 -- Table structure for sys_role

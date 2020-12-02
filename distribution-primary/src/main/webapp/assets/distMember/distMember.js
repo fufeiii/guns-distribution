@@ -7,27 +7,6 @@ layui.use(['table', 'admin', 'ax', 'func', 'layer','laytpl', 'element'], functio
     let form = layui.form;
     let layer = layui.layer;
     let laytpl = layui.laytpl;
-    // 图床上的头像，模拟真实用户
-    const headImgArray = [
-        'http://i.loli.net/2020/09/06/8LEKZHr76YoNa35.jpg',
-        'http://i.loli.net/2020/09/06/BILg54hcM3twpy8.jpg',
-        'http://i.loli.net/2020/09/19/bZ48rMSepctujOk.jpg',
-        'http://i.loli.net/2020/09/06/dKLb1MXqZ95F8in.jpg',
-        'http://i.loli.net/2020/09/06/sStzTg7VQIXAHmM.jpg',
-        'http://i.loli.net/2020/09/06/fok8UVrzILC1WAT.jpg',
-        'http://i.loli.net/2020/09/06/uTfjGZdsIeEA63D.jpg',
-        'http://i.loli.net/2020/09/06/HKqDwCMrcjVxf6i.jpg',
-        'http://i.loli.net/2020/09/06/fc1ijrhSTU9XEVZ.jpg',
-        'http://i.loli.net/2020/09/06/B13MpNnSrkicsVG.jpg',
-        'http://i.loli.net/2020/09/06/VnTNALlzgkwZ5Oo.jpg',
-        'http://i.loli.net/2020/09/06/CEJhog7KFUx5buP.jpg',
-        'http://i.loli.net/2020/09/06/GFaYoiLRDPHtyQ9.jpg',
-        'http://i.loli.net/2020/09/06/DLRtx7FYjAMgdZ2.jpg',
-        'http://i.loli.net/2020/09/06/fzRbgZGiUn7StcW.jpg',
-        'http://i.loli.net/2020/09/06/PFq6kNpmSXfoMEy.jpg',
-        'http://i.loli.net/2020/09/06/aTxBHgWVqcouX8h.jpg',
-        'http://i.loli.net/2020/09/06/8O5reGbujBl1dTC.jpg'
-    ];
 
     /**
      * 会员管理
@@ -182,15 +161,10 @@ layui.use(['table', 'admin', 'ax', 'func', 'layer','laytpl', 'element'], functio
         url: Feng.ctxPath + '/distMember/list',
         // 模拟头像，真实环境请可以去除这里的parseData配置
         parseData: function(res){ //res 即为原始返回的数据
-            let copyArray = [];
             layui.each(res.data, function (i, item) {
-                if (!copyArray.length) {
-                    Object.assign(copyArray, headImgArray)
-                }
-                let idx = Math.floor(Math.random() * copyArray.length);
+                // 头像
                 if (!item.memberAvatar) {
-                    item.memberAvatar = copyArray[idx];
-                    copyArray.splice(idx, 1);
+                    item.memberAvatar = '/assets/common/images/head.jpg';
                 }
             });
             return {

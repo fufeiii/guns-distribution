@@ -28,6 +28,11 @@ public class DistDashboardController {
         return PREFIX + "/workplace.html";
     }
 
+    @RequestMapping("/businessStatistics")
+    public String businessStatistics() {
+        return PREFIX + "/businessStatistics.html";
+    }
+
 
     /**
      * 首页的所有的数字

@@ -14,6 +14,7 @@ import cn.stylefeng.guns.modular.distribution.entity.DistWithdrawRecord;
 import cn.stylefeng.guns.modular.distribution.enums.biz.AccountTypeEnum;
 import cn.stylefeng.guns.modular.distribution.enums.biz.ChangeTypeEnum;
 import cn.stylefeng.guns.modular.distribution.enums.biz.DisposeStateEnum;
+import cn.stylefeng.guns.modular.distribution.enums.biz.StateEnum;
 import cn.stylefeng.guns.modular.distribution.exception.DistributionException;
 import cn.stylefeng.guns.modular.distribution.mapper.DistWithdrawRecordMapper;
 import cn.stylefeng.guns.modular.distribution.model.dto.DistWithdrawRecordDTO;
@@ -65,6 +66,8 @@ public class DistWithdrawRecordServiceImpl extends ServiceImpl<DistWithdrawRecor
         AssertHelper.notNull(member, DistributionException.BizEnum.MEMBER_NOT_EXIST);
         // 验证会员账户
         DistAccount account = distAccountService.getById(member.getId());
+        AssertHelper.isTrue(StateEnum.ENABLE.equals(account.getState()), DistributionException.BizEnum.ACCOUNT_FORBIDDEN);
+
         BigDecimal moneyAvailable = account.getMoneyAvailable();
         BigDecimal withdrawAmount = withdrawRecord.getWithdrawAmount();
         BigDecimal fee = withdrawAmount.multiply(ConstantsContext.getDistWithdrawRatio());
@@ -107,13 +110,17 @@ public class DistWithdrawRecordServiceImpl extends ServiceImpl<DistWithdrawRecor
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void audit(DistWithdrawRecordDTO param) {
+        // 验证会员是否存在
+        DistMember member = distMemberService.findByMemberUsername(param.getMemberUsername());
+        AssertHelper.notNull(member, DistributionException.BizEnum.MEMBER_NOT_EXIST);
+        // 验证会员账户
+        DistAccount account = distAccountService.getById(member.getId());
+        AssertHelper.isTrue(StateEnum.ENABLE.equals(account.getState()), DistributionException.BizEnum.ACCOUNT_FORBIDDEN);
+
         DistWithdrawRecord oldWithdrawRecord = this.getOldEntity(param);
         DistWithdrawRecord withdrawRecord = this.getEntity(param);
         if (DisposeStateEnum.REJECT.equals(param.getDisposeState())) {
             // 拒绝提现申请
-            DistMember member = distMemberService.findByMemberUsername(oldWithdrawRecord.getMemberUsername());
-            DistAccount account = distAccountService.getById(member.getId());
-
             // 解冻被扣的钱
             BigDecimal freezeMoney = oldWithdrawRecord.getWithdrawAmount().add(oldWithdrawRecord.getFeeAmount());
             account.setMoneyAvailable(account.getMoneyAvailable().add(freezeMoney))

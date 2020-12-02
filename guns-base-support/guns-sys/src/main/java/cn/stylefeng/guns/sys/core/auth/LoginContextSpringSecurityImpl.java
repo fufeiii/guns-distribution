@@ -135,4 +135,10 @@ public class LoginContextSpringSecurityImpl implements LoginContext {
     public String getWebhook() {
         return this.getUser().getWebhook();
     }
+
+    @Override
+    public void removeTenantAccount() {
+        SecurityContextHolder.getContext().setAuthentication(null);
+    }
+
 }

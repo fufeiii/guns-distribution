@@ -52,8 +52,8 @@ public class DistProfitParamServiceImpl extends ServiceImpl<DistProfitParamMappe
 
         // 计算模式 [百分比] 仅支持 分润类型为 [商品交易] 的场景
         boolean notLegal = CalculateModeEnum.PERCENTAGE.equals(param.getCalculateMode()) && !ProfitTypeEnum.TRADE.equals(param.getProfitType());
-        AssertHelper.isTrue(notLegal, DistributionException.BizEnum.PROFIT_PARAM_ILLEGAL);
-
+        // 上面判断的是不合法，取反则代表合法。
+        AssertHelper.isTrue(!notLegal, DistributionException.BizEnum.PROFIT_PARAM_ILLEGAL);
         // 没有相同的存在则添加对应参数
         DistProfitParam entity = this.getEntity(param);
         entity.setVersion(1);

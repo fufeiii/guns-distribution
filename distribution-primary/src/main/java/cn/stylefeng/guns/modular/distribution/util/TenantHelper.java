@@ -34,6 +34,9 @@ public class TenantHelper {
         LoginContextHolder.getContext().setTenantAccount(tenant);
     }
 
+    public static void removeTenant() {
+        LoginContextHolder.getContext().removeTenantAccount();
+    }
 
     //====================================== 基于websocket的租户获取/设置======================================
 

@@ -105,4 +105,9 @@ public interface LoginContext {
      * 获得当前租户的webhook
      */
     String getWebhook();
+
+    /**
+     * 移除当前线程的租户信息
+     */
+    void removeTenantAccount();
 }

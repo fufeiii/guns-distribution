@@ -107,7 +107,7 @@
 
     <select id="selectMemberList" resultType="cn.stylefeng.guns.modular.distribution.model.vo.DistMemberVO" >
         SELECT
-            id AS id, create_time as createTime, member_username as memberUsername,
+            id AS id, create_time as createTime, member_username as memberUsername, member_avatar AS memberAvatar,
             member_nickname as memberNickname, member_type as memberType, member_rank as memberRank
         FROM
             dist_member

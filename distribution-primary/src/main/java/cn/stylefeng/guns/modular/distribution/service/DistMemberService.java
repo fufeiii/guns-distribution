@@ -38,7 +38,6 @@ public interface DistMemberService extends IService<DistMember> {
 
     /**
      * 检查一个会员是否存在
-     * @param memberUsername
      */
     boolean exists(String memberUsername);
 

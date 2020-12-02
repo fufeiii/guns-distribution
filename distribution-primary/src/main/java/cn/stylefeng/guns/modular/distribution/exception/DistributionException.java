@@ -63,6 +63,7 @@ public class DistributionException extends ServiceException {
 
         // -----------------账户相关异常
         ACCOUNT_BALANCE_LACK(7601, "账户余额不足"),
+        ACCOUNT_FORBIDDEN(7602, "账户已被冻结"),
 
 
 

@@ -43,7 +43,6 @@ public interface DistWithdrawRecordService extends IService<DistWithdrawRecord> 
      *
      * @param memberUsername 用户标识
      * @param disposeState   状态
-     * @return
      */
     BigDecimal findWithdrawMoney(String memberUsername, DisposeStateEnum disposeState);
 }

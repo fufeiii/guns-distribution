@@ -8,27 +8,6 @@ layui.use(['layer', 'admin', 'ax','laytpl','func','notice'], function () {
     let notice = layui.notice;
     let socket = null;
     let events = null;
-    // 把头像传到图床上，模拟真实用户
-    let headImgArray = [
-        'http://i.loli.net/2020/09/06/8LEKZHr76YoNa35.jpg',
-        'http://i.loli.net/2020/09/06/BILg54hcM3twpy8.jpg',
-        'http://i.loli.net/2020/09/19/bZ48rMSepctujOk.jpg',
-        'http://i.loli.net/2020/09/06/dKLb1MXqZ95F8in.jpg',
-        'http://i.loli.net/2020/09/06/sStzTg7VQIXAHmM.jpg',
-        'http://i.loli.net/2020/09/06/fok8UVrzILC1WAT.jpg',
-        'http://i.loli.net/2020/09/06/uTfjGZdsIeEA63D.jpg',
-        'http://i.loli.net/2020/09/06/HKqDwCMrcjVxf6i.jpg',
-        'http://i.loli.net/2020/09/06/fc1ijrhSTU9XEVZ.jpg',
-        'http://i.loli.net/2020/09/06/B13MpNnSrkicsVG.jpg',
-        'http://i.loli.net/2020/09/06/VnTNALlzgkwZ5Oo.jpg',
-        'http://i.loli.net/2020/09/06/CEJhog7KFUx5buP.jpg',
-        'http://i.loli.net/2020/09/06/GFaYoiLRDPHtyQ9.jpg',
-        'http://i.loli.net/2020/09/06/DLRtx7FYjAMgdZ2.jpg',
-        'http://i.loli.net/2020/09/06/fzRbgZGiUn7StcW.jpg',
-        'http://i.loli.net/2020/09/06/PFq6kNpmSXfoMEy.jpg',
-        'http://i.loli.net/2020/09/06/aTxBHgWVqcouX8h.jpg',
-        'http://i.loli.net/2020/09/06/8O5reGbujBl1dTC.jpg'
-    ];
 
     profitEventSocket();
     numsAll();
@@ -71,7 +50,6 @@ layui.use(['layer', 'admin', 'ax','laytpl','func','notice'], function () {
                 layer.msg("获取数据失败~");
                 return;
             }
-            let copyArray = [];
             layui.each(data.data, function (i, item) {
                 // 段位勋章
                 if (item.memberRank === 'BRONZE') {
@@ -86,13 +64,8 @@ layui.use(['layer', 'admin', 'ax','laytpl','func','notice'], function () {
                     item['badge'] = 'badge-diamond';
                 }
                 // 头像
-                if (!copyArray.length) {
-                    Object.assign(copyArray, headImgArray)
-                }
                 if (!item.memberAvatar) {
-                    let idx = Math.floor(Math.random() * copyArray.length);
-                    item.memberAvatar = headImgArray[idx];
-                    copyArray.splice(idx, 1);
+                    item.memberAvatar = '/assets/common/images/head.jpg';
                 }
             })
             render(data.data, 'topTpl', 'topDiv');

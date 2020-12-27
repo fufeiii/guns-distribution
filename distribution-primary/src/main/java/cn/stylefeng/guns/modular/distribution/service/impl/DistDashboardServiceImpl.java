@@ -15,15 +15,14 @@ import cn.stylefeng.guns.modular.distribution.service.DistMemberService;
 import cn.stylefeng.guns.modular.distribution.service.DistProfitEventService;
 import cn.stylefeng.guns.modular.distribution.service.DistWithdrawRecordService;
 import cn.stylefeng.guns.modular.distribution.util.AssertHelper;
-import cn.stylefeng.guns.modular.distribution.util.SpringTransactionHelper;
+import cn.stylefeng.guns.modular.distribution.util.SpringTransactionUtil;
 import cn.stylefeng.guns.modular.distribution.util.TenantHelper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -44,15 +43,6 @@ public class DistDashboardServiceImpl implements DistDashboardService {
     @Qualifier("dashboardExecutorService")
     @Autowired
     private ExecutorService executorService;
-
-    /**
-     * 使用了线程池，使用spring编程式事务，需要以下两个依赖。
-     */
-    @Autowired
-    private PlatformTransactionManager platformTransactionManager;
-    @Autowired
-    private TransactionDefinition transactionDefinition;
-
     @Autowired
     private DistMemberService distMemberService;
     @Autowired
@@ -60,8 +50,12 @@ public class DistDashboardServiceImpl implements DistDashboardService {
     @Autowired
     private DistWithdrawRecordService distWithdrawRecordService;
 
+    /**
+     * 使用了线程池，使用spring编程式事务，需要以下两个依赖。
+     */
+    @Autowired
+    private TransactionTemplate transactionTemplate;
 
-    @Transactional(readOnly = true)
     @Override
     public SummaryNumsVO summaryNums() {
         String tenant = TenantHelper.getTenant();
@@ -73,44 +67,40 @@ public class DistDashboardServiceImpl implements DistDashboardService {
         SummaryNumsVO summaryNumsVO = new SummaryNumsVO();
 
         // 会员新增数
-        CompletableFuture<Void> memTask = CompletableFuture.runAsync(() -> {
-            this.startTransaction(tenant);
+        CompletableFuture<Void> memTask = CompletableFuture.runAsync(() -> SpringTransactionUtil.executeWithoutResult(transactionTemplate, status -> {
+            TenantHelper.setTenant(tenant);
             int memTiny = distMemberService.countBetweenDate(beginOfWeek, endOfWeek);
             int memLarge = distMemberService.countBetweenDate(beginOfMonth, endOfMonth);
-            this.finishTransaction();
             summaryNumsVO.setMember(new SummaryNumsVO.Nums().setTiny(memTiny).setLarge(memLarge));
-        }, executorService);
+        }), executorService);
 
         // 商品交易额
-        CompletableFuture<Void> traTask = CompletableFuture.runAsync(() -> {
-            this.startTransaction(tenant);
+        CompletableFuture<Void> traTask = CompletableFuture.runAsync(() -> SpringTransactionUtil.executeWithoutResult(transactionTemplate, status -> {
+            TenantHelper.setTenant(tenant);
             BigDecimal traTiny = distProfitEventService.findTradeMoney(null, beginOfWeek, endOfWeek);
             BigDecimal traLarge = distProfitEventService.findTradeMoney(null, beginOfMonth, endOfMonth);
-            this.finishTransaction();
             summaryNumsVO.setTrade(new SummaryNumsVO.Nums().setTiny(traTiny).setLarge(traLarge));
-        }, executorService);
+        }), executorService);
 
         // 订单交易数
-        CompletableFuture<Void> ordTask = CompletableFuture.runAsync(() -> {
-            this.startTransaction(tenant);
+        CompletableFuture<Void> ordTask = CompletableFuture.runAsync(() -> SpringTransactionUtil.executeWithoutResult(transactionTemplate, status -> {
+            TenantHelper.setTenant(tenant);
             QueryWrapper<DistProfitEvent> ordQuery1 = new QueryWrapper<DistProfitEvent>().eq("profit_type", ProfitTypeEnum.TRADE.getCode())
                     .between("create_time", beginOfWeek, endOfWeek);
             int ordTiny = distProfitEventService.count(ordQuery1);
             QueryWrapper<DistProfitEvent> ordQuery2 = new QueryWrapper<DistProfitEvent>().eq("profit_type", ProfitTypeEnum.TRADE.getCode())
                     .between("create_time", beginOfMonth, endOfMonth);
             int ordLarge = distProfitEventService.count(ordQuery2);
-            this.finishTransaction();
             summaryNumsVO.setOrder(new SummaryNumsVO.Nums().setTiny(ordTiny).setLarge(ordLarge));
-        }, executorService);
+        }), executorService);
 
         // 佣金支出额
-        CompletableFuture<Void> proTask = CompletableFuture.runAsync(() -> {
-            this.startTransaction(tenant);
+        CompletableFuture<Void> proTask = CompletableFuture.runAsync(() -> SpringTransactionUtil.executeWithoutResult(transactionTemplate, status -> {
+            TenantHelper.setTenant(tenant);
             BigDecimal proTiny = distProfitEventService.findProfitMoney(null, beginOfWeek, endOfWeek);
             BigDecimal proLarge = distProfitEventService.findProfitMoney(null, beginOfMonth, endOfMonth);
-            this.finishTransaction();
             summaryNumsVO.setProfit(new SummaryNumsVO.Nums().setTiny(proTiny).setLarge(proLarge));
-        }, executorService);
+        }), executorService);
 
         // 等待所有任务完成
         CompletableFuture.allOf(memTask, traTask, ordTask, proTask).join();
@@ -126,7 +116,6 @@ public class DistDashboardServiceImpl implements DistDashboardService {
     }
 
 
-    @Transactional(readOnly = true)
     @Override
     public MemberIndexVO memberIndex4App(String memberUsername) {
         // 验证会员是否存在
@@ -140,31 +129,29 @@ public class DistDashboardServiceImpl implements DistDashboardService {
         MemberIndexVO memberIndex = new MemberIndexVO();
 
         // 今日模块（今日分销出去的产品/商品，下单总金额） && 今日收益（今日分润获利金额） && 今日邀请会员人数
-        CompletableFuture<Void> todTask = CompletableFuture.runAsync(() -> {
-            this.startTransaction(tenant);
+        CompletableFuture<Void> todTask = CompletableFuture.runAsync(() -> SpringTransactionUtil.executeWithoutResult(transactionTemplate, status -> {
+            TenantHelper.setTenant(tenant);
             BigDecimal tradeMoney = distProfitEventService.findTradeMoney(memberUsername, beginOfDay, endOfDay);
             BigDecimal profitMoney = distProfitEventService.findProfitMoney(memberUsername, beginOfDay, endOfDay);
             QueryWrapper<DistMember> memberQueryWrapper = new QueryWrapper<DistMember>().eq("fir_parent", memberUsername)
                     .between("create_time", beginOfDay, endOfDay);
             int inviteCount = distMemberService.count(memberQueryWrapper);
-            this.finishTransaction();
             memberIndex.setToday(new MemberIndexVO.Today().setTradeMoney(tradeMoney).setProfitMoney(profitMoney).setInviteCount(inviteCount));
-        }, executorService);
+        }), executorService);
 
         // 提现模块
-        CompletableFuture<Void> witTask = CompletableFuture.runAsync(() -> {
-            this.startTransaction(tenant);
+        CompletableFuture<Void> witTask = CompletableFuture.runAsync(() -> SpringTransactionUtil.executeWithoutResult(transactionTemplate, status -> {
+            TenantHelper.setTenant(tenant);
             // 已提现金额
             BigDecimal doneRemit = distWithdrawRecordService.findWithdrawMoney(memberUsername, DisposeStateEnum.DONE_REMIT);
             // 未结算金额
             BigDecimal waitRemit = distWithdrawRecordService.findWithdrawMoney(memberUsername, DisposeStateEnum.WAIT_REMIT);
-            this.finishTransaction();
             memberIndex.setWithdraw(new MemberIndexVO.Withdraw().setDoneRemit(doneRemit).setWaitRemit(waitRemit));
-        }, executorService);
+        }), executorService);
 
         // 汇总模块
-        CompletableFuture<Void> sumTask = CompletableFuture.runAsync(() -> {
-            this.startTransaction(tenant);
+        CompletableFuture<Void> sumTask = CompletableFuture.runAsync(() -> SpringTransactionUtil.executeWithoutResult(transactionTemplate, status -> {
+            TenantHelper.setTenant(tenant);
             // 推广佣金（总获利分润金额）
             BigDecimal allProfitMoney = distProfitEventService.findProfitMoney(memberUsername, null, null);
             // 分销订单（即直接或间接获得【商品交易】这种分润的所有订单金额）
@@ -177,17 +164,15 @@ public class DistDashboardServiceImpl implements DistDashboardService {
                     .or().eq("sec_parent", memberUsername)
                     .or().eq("thr_parent", memberUsername);
             int allTeamCount = distMemberService.count(queryWrapper);
-            this.finishTransaction();
             MemberIndexVO.Summary summary = new MemberIndexVO.Summary().setAllProfitMoney(allProfitMoney).setAllTradeMoney(allTradeMoney)
                     .setAllAvailableWithdraw(allAvailableWithdraw).setAllTeamCount(allTeamCount);
             memberIndex.setSummary(summary);
-        }, executorService);
+        }), executorService);
 
         // 会员模块
-        CompletableFuture<Void> memTask = CompletableFuture.runAsync(() -> {
-            this.startTransaction(tenant);
+        CompletableFuture<Void> memTask = CompletableFuture.runAsync(() -> SpringTransactionUtil.executeWithoutResult(transactionTemplate, status -> {
+            TenantHelper.setTenant(tenant);
             DistMember parentMember = distMemberService.findByMemberUsername(member.getFirParent());
-            this.finishTransaction();
             MemberIndexVO.Member currentMember = new MemberIndexVO.Member();
             currentMember.setMemberId(member.getId());
             currentMember.setMemberUsername(member.getMemberUsername());
@@ -199,43 +184,12 @@ public class DistDashboardServiceImpl implements DistDashboardService {
                 currentMember.setParent("无");
             }
             memberIndex.setMember(currentMember);
-        }, executorService);
+        }), executorService);
 
         // 等待...
         CompletableFuture.allOf(todTask, witTask, sumTask, memTask).join();
 
         return memberIndex;
     }
-
-
-    /**
-     * 准备dao层的环境
-     * 设置租户 && 开启新事务
-     */
-    private void startTransaction(String tenant) {
-        this.removeLastTransaction();
-        TenantHelper.setTenant(tenant);
-        SpringTransactionHelper.start(platformTransactionManager, transactionDefinition);
-    }
-
-    /**
-     * 提交本次查询事务
-     */
-    private void finishTransaction() {
-        SpringTransactionHelper.commit(platformTransactionManager);
-    }
-
-    /**
-     * 移除相关信息（如果存在的话）
-     */
-    private void removeLastTransaction() {
-        // 使用的线程池，清理上一个线程的TransactionStatus（如果有的话）避免造成内存泄漏。
-        // 因为也许没有到commit时发生了异常，此时当前线程的ThreadLocalMap里面存在一个value是一个无用的TransactionStatus的引用
-        // 理论上当前线程下一次设置TransactionStatus后，旧TransactionStatus的引用会被移除，旧TransactionStatus数据会被gc回收
-        // 但是还是显示的移除一下。
-        SpringTransactionHelper.removeTransactionStatus();
-        TenantHelper.removeTenant();
-    }
-
 
 }

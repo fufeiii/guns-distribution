@@ -6,8 +6,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -30,18 +28,17 @@ public class ValidatorUtil {
      * @param groups 验证组
      * @throws ValidationException 验证失败
      */
-    public static Map<String, Object> validate(Object object, Class<?>... groups) {
-        Map<String, Object> resMap = new HashMap<>(2);
-        resMap.put("result", true);
-        resMap.put("message", null);
+    public static Result validate(Object object, Class<?>... groups) {
+        boolean pass = true;
+        String message = null;
         Set<ConstraintViolation<Object>> constraintViolations = VALIDATOR.validate(object, groups);
         if (ToolUtil.isNotEmpty(constraintViolations)) {
             // 获取第一个不符合规范的约束。
             ConstraintViolation<Object> constraint = constraintViolations.iterator().next();
-            resMap.put("result", false);
-            resMap.put("message", constraint.getMessage());
+            pass = false;
+            message = constraint.getMessage();
         }
-        return resMap;
+        return new Result(pass, message);
     }
 
     /**
@@ -60,5 +57,23 @@ public class ValidatorUtil {
         return result;
     }
 
+    /**
+     * 校验结果bean
+     */
+     public static class Result {
+        private final boolean passed;
+        private final String message;
+
+        private Result(boolean passed, String message) {
+            this.passed = passed;
+            this.message = message;
+        }
+        public boolean isPassed() {
+            return passed;
+        }
+        public String getMessage() {
+            return message;
+        }
+    }
 
 }

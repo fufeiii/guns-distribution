@@ -1,6 +1,13 @@
 # Guns-Distribution
 
 [TOC]
+
+## 项目升级
+由于此项目存在很多不友好的地方，比如：与GUNS耦合太严重，模块分工不明确等问题。
+
+已对此重构升级，详见[**distribution-sale**](https://gitee.com/fufeii/distribution-sale.git) 项目，更简单且强大的分销解决方案。
+
+
 ## 前言
 - 整个项目基于 [Guns后台管理框架v6.1](https://gitee.com/stylefeng/guns)，简单易用学习成本低。
 - 部分思想参考 [分销管理系统(EDEN-MACE)](https://gitee.com/codingdb/distribution_management) ，并重新设计了各个模块。
